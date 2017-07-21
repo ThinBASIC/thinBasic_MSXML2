@@ -1,5 +1,8 @@
 *.exe
 *.tbasicx
 *.tbasiccx
+*.log
+*.RES
+*.PBR
 !/
 /*
