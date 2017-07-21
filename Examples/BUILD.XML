@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+
+<project name="CodeAid" default="dist" basedir=".">
+
+    <property file="build.properties"/>
+    <property file="../build.properties"/>
+    <property file="${user.home}/.build.properties"/>
+    <property file="${user.home}/build.properties"/>
+
+    <property name="plugin.lib" value=".." />
+    <property name="plugin.src" value="." />
+    <property name="plugin.build" value="build" />
+    <property name="jedit.jars" value=".." />
+    <property name="jedit.home" value="../.." />
+
+
+    <path id="build.classpath">
+        <!-- Other plugin dependencies -->
+        <pathelement path="${jedit.jars}/Jane.jar" />
+        <!-- External libraries: jakarta bcel, junit (test target only) -->
+        <pathelement path="${jedit.jars}/commons-logging.jar" />
+        <pathelement path="${jedit.jars}/junit.jar" />
+        <pathelement path="${jedit.jars}/SideKick.jar" />
+        <pathelement path="${jedit.jars}/ErrorList.jar" />
+        <!-- The main jEdit library -->
+        <pathelement path="${jedit.home}/jedit.jar" />
+    </path>
+
+
+    <target name="init">
+        <mkdir dir="${plugin.build}"/>
+    </target>
+
+
+    <target
+        name="compile"
+        depends="init"
+        description="Compiles all java files for the plugin"
+    >
+        <javac
+            srcdir="${plugin.src}"
+            destdir="${plugin.build}"
+            deprecation="on"
+            debug="on"
+            excludes="**/*Test*"
+        >
+            <classpath>
+                <path refid="build.classpath"/>
+            </classpath>
+        </javac>
+    </target>
+
+
+    <target name="clean" description="Removes the build directory">
+        <delete dir="${plugin.build}"/>
+    </target>
+
+
+    <target
+        name="dist"
+        depends="compile"
+        description="Packages the plugin in the jars directory"
+    >
+        <jar jarfile="${jedit.jars}/${ant.project.name}.jar">
+            <fileset dir="${plugin.build}"/>
+            <fileset dir="${plugin.src}">
+                <include name="actions.xml"/>
+                <include name="dockables.xml"/>
+                <include name="**/*.props"/>
+                <include name="**/*.gif"/>
+                <include name="**/*.html"/>
+            </fileset>
+        </jar>
+    </target>
+
+
+    <target name="package" depends="dist" description="Packages the plugin for distribution">
+        <zip zipfile="${ant.project.name}.zip">
+            <zipfileset dir="${basedir}" prefix="${ant.project.name}" excludes="${ant.project.name}.zip,lib/*.jar,**/*.class" />
+            <zipfileset dir="${jedit.jars}" includes="${ant.project.name}.jar" />
+            <zipfileset dir="${plugin.lib}" includes="*.jar" />
+        </zip>
+    </target>
+
+
+    <target name="src_distr" description="Packages sources for distribution">
+        <jar
+            jarfile="${jedit.jars}/${ant.project.name}_src.jar"
+            basedir="${plugin.build}"
+            excludes="**/*.class"
+        />
+    </target>
+
+
+    <target name="test" depends="compile">
+        <junit haltonfailure="yes" printsummary="yes">
+            <classpath>
+                <path refid="build.classpath"/>
+                <pathelement path="${plugin.build}"/>
+            </classpath>
+
+            <formatter type="plain" usefile="yes"/>
+            <sysproperty key="java.rt" value="${java.rt}"/>
+            <test name="codeaid.test.ExpressionTest" />
+            <test name="codeaid.test.CompletionTestWrapper" />
+            <test name="codeaid.test.ReverseStringReaderTest" />
+            <test name="codeaid.test.CollectorTest" />
+            <test name="codeaid.test.JavaSourceFileTest" />
+        </junit>
+    </target>
+
+</project>
+

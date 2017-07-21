@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Schema xmlns="urn:schemas-microsoft-com:xml-data">
+   <ElementType name="child"/>
+   <ElementType name="root" model="closed">
+     <element type="child"/>
+  </ElementType>
+</Schema>

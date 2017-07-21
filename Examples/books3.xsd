@@ -1,0 +1,33 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:books" xmlns:b="urn:books">
+
+  <xs:element name="catalog" type="b:CatalogData"/> 
+
+  <xs:complexType name="CatalogData">
+    <xs:sequence>
+      <xs:element name="book" type="b:bookdata" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="AuthorType">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="5"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+
+  <xs:complexType name="bookdata">
+    <xs:sequence>
+      <xs:element name="author" type="b:AuthorType"/>
+      <xs:element name="State" type="xs:string"/>
+      <xs:element name="title" type="xs:string"/>
+      <xs:element name="genre" type="xs:string"/>
+      <xs:element name="price" type="xs:float"/>
+      <xs:element name="publish_date" type="xs:date"/>
+      <xs:element name="description" type="xs:string"/>      
+    </xs:sequence>
+
+    <xs:attribute name="id" type="xs:string"/>
+
+  </xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,20 @@
+<?xml version='1.0'?>
+<COLLECTION
+   xmlns:dt="urn:schemas-microsoft-com:datatypes">
+  <DATE dt:dt="datetime">1998-10-13T15:56:00</DATE>
+  <BOOK>
+    <TITLE>Lover Birds</TITLE>
+    <AUTHOR>Cynthia Randall</AUTHOR>
+    <PUBLISHER>Lucerne Publishing</PUBLISHER>
+  </BOOK>
+  <BOOK>
+    <TITLE>The Sundered Grail
+    <AUTHOR>Eva Corets</AUTHOR>
+    <PUBLISHER>Lucerne Publishing</PUBLISHER>
+  </BOOK>
+  <BOOK>
+    <TITLE>Splish Splash</TITLE>
+    <AUTHOR>Paula Thurman</AUTHOR>
+    <PUBLISHER>Scootney</PUBLISHER>
+  </BOOK>
+</COLLECTION>

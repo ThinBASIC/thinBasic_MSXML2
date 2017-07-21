@@ -1,0 +1,29 @@
+<?xml version='1.0'?>
+<!DOCTYPE COLLECTION [ 
+<!ELEMENT COLLECTION    (DATE? , BOOK+) >
+<!ATTLIST COLLECTION
+    xmlns:dt CDATA #FIXED "urn:schemas-microsoft-com:datatypes">
+<!ELEMENT BOOK         (TITLE, AUTHOR, PUBLISHER) >
+<!ELEMENT DATE         (#PCDATA) >
+<!ELEMENT TITLE         (#PCDATA)  >
+<!ELEMENT AUTHOR        (#PCDATA)  >
+<!ELEMENT PUBLISHER     (#PCDATA)  >
+]>
+<COLLECTION
+   xmlns:dt="urn:schemas-microsoft-com:datatypes">
+  <BOOK>
+    <TITLE>Lover Birds</TITLE>
+    <AUTHOR>Cynthia Randall</AUTHOR>
+    <PUBLISHER>Lucerne Publishing</PUBLISHER>
+  </BOOK>
+  <BOOK>
+    <TITLE>The Sundered Grail</TITLE>
+    <AUTHOR>Eva Corets</AUTHOR>
+    <PUBLISHER>Lucerne Publishing</PUBLISHER>
+  </BOOK>
+  <BOOK>
+    <TITLE>Splish Splash</TITLE>
+    <AUTHOR>Paula Thurman</AUTHOR>
+    <PUBLISHER>Scootney</PUBLISHER>
+  </BOOK>
+</COLLECTION>
