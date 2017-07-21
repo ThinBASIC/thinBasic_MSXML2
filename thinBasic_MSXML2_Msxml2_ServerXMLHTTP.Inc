@@ -28,12 +28,12 @@
                 "MSXML2 module error"
       End If
     End Method
-    
+
     Class Method Destroy()
       '---Do cleanup
       pHTTPServer = Nothing
     End Method
-  
+
     '----------------------------------------------------------------------------
     ' We need to define an interface that will contain public methods
     '----------------------------------------------------------------------------
@@ -53,28 +53,28 @@
       '----------------------------------------------------------------------------
       ' Destructor
       '----------------------------------------------------------------------------
-      Method cServerXMLHTTP_Destroy() As Dword 
+      Method cServerXMLHTTP_Destroy() As Dword
         Set pHTTPServer = Nothing
       End Method
 
       '----------------------------------------------------------------------------
       ' GetClassObject
       '----------------------------------------------------------------------------
-      Method cServerXMLHTTP_GetClassObject() As Dword 
+      Method cServerXMLHTTP_GetClassObject() As Dword
         Method = VarPtr(pHTTPServer)
       End Method
 
       '----------------------------------------------------------------------------
       ' IsNothing
       '----------------------------------------------------------------------------
-      Method cServerXMLHTTP_IsNothing() As Dword 
+      Method cServerXMLHTTP_IsNothing() As Dword
         Method = IsNothing(pHTTPServer)
       End Method
 
       '----------------------------------------------------------------------------
       ' IsObject
       '----------------------------------------------------------------------------
-      Method cServerXMLHTTP_IsObject() As Dword 
+      Method cServerXMLHTTP_IsObject() As Dword
         Method = IsObject(pHTTPServer)
       End Method
 
@@ -174,7 +174,7 @@
   '--------------------------------------------------------------------------------------
     Local pp            As Long
     Local sName         As String
-    
+
     Local sMethod      As String
     Local sUrl         As String
     Local eAsync       As Ext
@@ -182,31 +182,31 @@
     Local sUser        As String
     Local sPassword    As String
     Local sValue       As String
-    Local sBody        As String 
+    Local sBody        As String
     Local eresolveTimeout  As Ext
     Local econnectTimeout  As Ext
     Local esendTimeout     As Ext
     Local ereceiveTimeout  As Ext
-    
-    
+
+
     '---We map our instance (whatever it will be) to a pObject pointer
-    ReDim oObject(1& To 1&) As iMsxml2_ServerXMLHTTP At pObject   
+    ReDim oObject(1& To 1&) As iMsxml2_ServerXMLHTTP At pObject
     '---Here we get internal real class object and we will use it directly from now on
     ReDim lServerXMLHTTP(1& To 1&) As IServerXMLHTTPRequest2 At oObject(1&).cServerXMLHTTP_GetClassObject
 
     '---We need to parse next token and we need to use special fucntion: thinBasic_GetUnknownToken
     '---This function is special because it instruct parser (thinCore) to not check for token validity
     '---but just parse something and return whetever it will find in terms of token string
-    
+
     '   ATTENTION: thinBasic_GetUnknownToken always return UCASE tokens in order to simplify SELECT/CASE
     sName = thinBasic_GetUnknownToken
 
     '---Now we have to check parsed token using token content
     Select Case Const$ sName      '<<<---IMPORTANT: use CONST$ to speed up Select Case operations
 
-      '-------------------------------------------------------  
+      '-------------------------------------------------------
       '---Methods
-      '---------------  
+      '---------------
       Case "STATUS"
         '---We need to tell thinCore what type of info we are returning assigning to return function value the type
         '---Than assign to @RetValNum or @RetValStr the return value
@@ -218,7 +218,7 @@
           Else
             @RetValNum = lServerXMLHTTP(1&).Status
           End If
-        End If    
+        End If
 
       Case "STATUSTEXT"
         '---We need to tell thinCore what type of info we are returning assigning to return function value the type
@@ -231,7 +231,7 @@
           Else
             @RetValStr = lServerXMLHTTP(1&).StatusText
           End If
-        End If    
+        End If
 
       Case "READYSTATE"
         '---We need to tell thinCore what type of info we are returning assigning to return function value the type
@@ -244,23 +244,23 @@
           Else
             @RetValNum = lServerXMLHTTP(1&).ReadyState
           End If
-        End If    
-        
+        End If
+
       Case "OPEN"
         '---We need to tell thinCore what type of info we are returning assigning to return function value the type
         '---Than assign to @RetValNum or @RetValStr the return value
         Function = %thinBasic_ReturnNumber
         '---parse Params
         pp = thinBasic_CheckOpenParens_Optional
-        thinBasic_ParseString sMethod        
+        thinBasic_ParseString sMethod
         If thinBasic_CheckComma_Mandatory Then
           thinBasic_ParseString sUrl
 
           eAsync = %FALSE
           If thinBasic_CheckComma_optional Then
-            thinBasic_ParseNumber eAsync                
+            thinBasic_ParseNumber eAsync
             If thinBasic_CheckComma_Optional Then
-              thinBasic_ParseString sUser                
+              thinBasic_ParseString sUser
               If thinBasic_CheckComma_Mandatory Then
                 thinBasic_ParseString sPassword
               End If
@@ -280,16 +280,16 @@
             '        bstrUser As Variant, Opt ByVal bstrPassword As Variant)
           End If
         End If
-                
+
       Case "SETREQUESTHEADER"
         '---We need to tell thinCore what type of info we are returning assigning to return function value the type
         '---Than assign to @RetValNum or @RetValStr the return value
         Function = %thinBasic_ReturnNumber
         '---parse Params
         pp = thinBasic_CheckOpenParens_Optional
-        thinBasic_ParseString sHeader        
+        thinBasic_ParseString sHeader
         If thinBasic_CheckComma_Mandatory Then
-          thinBasic_ParseString sValue                
+          thinBasic_ParseString sValue
         End If
         If pp Then thinBasic_CheckCloseParens_Mandatory
         '---If all went fine ...
@@ -297,7 +297,7 @@
           If lRecursive Then
             '@RetValNum = Left$(@RetValStr, nChars)
           Else
-            '@RetValNum = 
+            '@RetValNum =
             lServerXMLHTTP(1&).SetRequestHeader(sHeader, sValue)
           End If
         End If
@@ -315,7 +315,7 @@
           If lRecursive Then
             '@RetValNum = Left$(@RetValStr, nChars)
           Else
-            '@RetValNum = 
+            '@RetValNum =
             lServerXMLHTTP(1&).Send(sBody)
           End If
         End If
@@ -346,7 +346,7 @@
           Else
             @RetValStr = lServerXMLHTTP(1&).ResponseText
           End If
-        End If    
+        End If
 
       Case "SETTIMEOUTS"
         '---We need to tell thinCore what type of info we are returning assigning to return function value the type
@@ -359,11 +359,11 @@
           If lRecursive Then
             '@RetValNum = Left$(@RetValStr, nChars)
           Else
-            '@RetValNum = 
+            '@RetValNum =
             lServerXMLHTTP(1&).setTimeouts(eresolveTimeout, econnectTimeout, esendTimeout, ereceiveTimeout)
           End If
         End If
-        
+
       Case "GETALLRESPONSEHEADERS" ' UCase$("getAllResponseHeaders")
         '---We need to tell thinCore what type of info we are returning assigning to return function value the type
         '---Than assign to @RetValNum or @RetValStr the return value
@@ -375,7 +375,7 @@
           Else
             @RetValStr = lServerXMLHTTP(1&).getAllResponseHeaders
           End If
-        End If    
+        End If
 
       Case "GETRESPONSEHEADER" ' UCase$("getResponseHeader")
         '---We need to tell thinCore what type of info we are returning assigning to return function value the type
@@ -392,7 +392,7 @@
           Else
             @RetValStr = lServerXMLHTTP(1&).getResponseHeader(sBody)
           End If
-        End If    
+        End If
 
 
       Case "ISOBJECT"
@@ -402,7 +402,7 @@
         '---parse Params
         If thinBasic_CheckOpenParens_Optional Then thinBasic_CheckCloseParens_Mandatory
         @RetValNum = oObject(1&).cServerXMLHTTP_IsObject
-          
+
       Case "ISNOTHING"
         '---We need to tell thinCore what type of info we are returning assigning to return function value the type
         '---Than assign to @RetValNum or @RetValStr the return value
@@ -410,10 +410,10 @@
         '---parse Params
         If thinBasic_CheckOpenParens_Optional Then thinBasic_CheckCloseParens_Mandatory
         @RetValNum = oObject(1&).cServerXMLHTTP_IsNothing
-        
-'      '-------------------------------------------------------  
+
+'      '-------------------------------------------------------
 '      '---Properties
-'      '---------------  
+'      '---------------
 '      Case "VALUE"  '---Support GET and SET. Programmer is free to support whatever event type
 '
 '        '---In all "value" cases we will return a string, so we can assign return type here
@@ -422,41 +422,41 @@
 '        Select Case Long lAction
 '          Case %Class_Action_Get
 '            @RetValStr = oObject(1&).sGet
-'            
+'
 '          Case %Class_Action_Set
 '            lEqualType = thinBasic_CheckEqualType_Mandatory
 '            If thinBasic_ErrorFree Then
 '              Select Case Long lEqualType
-'    
+'
 '                '---Assignment
 '                Case  %Equal_EQ
 '                      oObject(1&).sSet(thinBasic_Parse1String)
-'    
-'                '---Assignment with concatenation      
+'
+'                '---Assignment with concatenation
 '                Case  %Equal_PLUSEQUAL, _
 '                      %Equal_CONCEQUAL, _
 '                      %Equal_POINTEQUAL
-'    
+'
 '                      oObject(1&).sSet(oObject(1&).sGet() & thinBasic_Parse1String)
 '                Case Else
-'                  '---Not supperted for strings 
+'                  '---Not supperted for strings
 '                  'MsgBox FuncName$ & Str$(lEqualType)
 '              End Select
 '            End If
-'          
+'
 '        End Select
 
       Case Else
-        thinBasic_RunTimeError(%ERR__CLASS_METHODPROPERTY_NOTFOUND)  
+        thinBasic_RunTimeError(%ERR__CLASS_METHODPROPERTY_NOTFOUND)
     End Select
 
-    '-------------------------------------------------------  
+    '-------------------------------------------------------
     '---Compound methods
-    '---------------  
+    '---------------
     '   In case we have compound methods (defined as point after a method or property
     '   call this function recursively.
     '   Example: myObject.MyMethod.MyCompoundSubMethod
-    '---------------  
+    '---------------
     If thinBasic_CheckPoint_Optional Then
       Function = Msxml2_ServerXMLHTTP_ClassHandling ( _
                                                   pObject   , _
@@ -465,8 +465,7 @@
                                                   RetValNum , _
                                                   RetValStr , _
                                                   %TRUE       _
-                                                )                                         
+                                                )
     End If
-      
-  End Function
 
+  End Function

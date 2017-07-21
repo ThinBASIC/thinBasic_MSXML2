@@ -1,6 +1,6 @@
   '----------------------------------------------------------------------------------------------------------
   '----------------------------------------------------------------------------
-  ' Class 
+  ' Class
   '----------------------------------------------------------------------------
   Class cMsxml2_DOMDocument
 
@@ -31,12 +31,12 @@
       End If
 
     End Method
-    
+
     Class Method Destroy()
       '---Do cleanup
       oDOMDoc = Nothing
     End Method
-  
+
     '----------------------------------------------------------------------------
     ' We need to define an interface that will contain public methods
     '----------------------------------------------------------------------------
@@ -49,11 +49,11 @@
       '----------------------------------------------------------------------------
       '
       '----------------------------------------------------------------------------
-      Method LoadXML(ByVal sXml As String ) As Long                          
+      Method LoadXML(ByVal sXml As String ) As Long
         Local vXml As variant
-        
+
         vXml = sXml
-        
+
         Object Call oDOMDoc.LoadXml(vXML) To vResult
 
       End Method
@@ -64,13 +64,13 @@
       Method GetElementsByTagName(ByVal sTag As String) As String
         Local vTag    As variant
         Local ofields As Dispatch
-        Local sResult As String  
+        Local sResult As String
         Local vResult As Variant
         Local nItems  As Long
         Local nItem   As Long
-        Local v1      As variant  
-        
-        Set vTag = sTag       
+        Local v1      As variant
+
+        Set vTag = sTag
         Object Call oDOMDoc.GetElementsByTagName(vTag) To vResult
 
         'Object Call oDOMDoc.getElementsByTagName(v1) To vresult
@@ -90,7 +90,7 @@
                 sResult += $CrLf & Variant$(vResult)
               End If
             End If
-        Next 
+        Next
         oFields = Nothing
         Method = sResult
 '    v1 = sxml
@@ -113,7 +113,7 @@
 '                'sresult += $CrLf + stag + "," + Variant$(vResult)
 '                sresult = Variant$(vResult)
 '            End If
-'        Next 
+'        Next
 '        oFields = Nothing
 '    'Next
 
@@ -148,9 +148,9 @@
 '      '----------------------------------------------------------------------------
 '      Method Send(ByVal sBody As String) As Long
 '        Local vBody As variant
-'        
+'
 '        Set vBody = sBody
-'        
+'
 '        Object Call oHTTP.Send(vBody) To vResult
 '        'Method = vResult
 '
@@ -184,27 +184,27 @@
   '--------------------------------------------------------------------------------------
     Local pp            As Long
     Local sName         As String
-    
+
     Local sXml         As String
     Local sTagName     As String
-    
-    
+
+
     '---As usual we map our instance (whatever it will be) to a pObject pointer
-    ReDim oObject(1& To 1&) As iMsxml2_DOMDocument At pObject   
+    ReDim oObject(1& To 1&) As iMsxml2_DOMDocument At pObject
 
     '---We need to parse next token and we need to use special fucntion: thinBasic_GetUnknownToken
     '---This function is special because it instruct parser (thinCore) to not check for token validity
     '---but just parse something and return whetever it will find in terms of token string
-    
+
     '   ATTENTION: thinBasic_GetUnknownToken always return UCASE tokens in order to simplify SELECT/CASE
     sName = thinBasic_GetUnknownToken
 
     '---Now we have to check parsed token using token content
     Select Case Const$ sName      '<<<---IMPORTANT: use CONST$ to speed up Select Case operations
 
-      '-------------------------------------------------------  
+      '-------------------------------------------------------
       '---Methods
-      '---------------  
+      '---------------
       Case "LOADXML"
         '---We need to tell thinCore what type of info we are returning assigning to return function value the type
         '---Than assign to @RetValNum or @RetValStr the return value
@@ -221,16 +221,16 @@
             @RetValNum = oObject(1&).LoadXml(sXml)
           End If
         End If
-                
+
 '      Case "GetElementsByTagName"
 '        '---We need to tell thinCore what type of info we are returning assigning to return function value the type
 '        '---Than assign to @RetValNum or @RetValStr the return value
 '        Function = %thinBasic_ReturnNumber
 '        '---parse Params
 '        pp = thinBasic_CheckOpenParens_Optional
-'        thinBasic_ParseString sHeader        
+'        thinBasic_ParseString sHeader
 '        If thinBasic_CheckComma_Mandatory Then
-'          thinBasic_ParseString sValue                
+'          thinBasic_ParseString sValue
 '        End If
 '        If pp Then thinBasic_CheckCloseParens_Mandatory
 '        '---If all went fine ...
@@ -258,11 +258,11 @@
 '            @RetValNum = oObject(1&).Send(sBody)
 '          End If
 '        End If
-'     
+'
       Case "LEN"
         Function = %thinBasic_ReturnNumber
         @RetValNum = Len(@RetValStr)
-      
+
       Case "GETELEMENTSBYTAGNAME"
         '---We need to tell thinCore what type of info we are returning assigning to return function value the type
         '---Than assign to @RetValNum or @RetValStr the return value
@@ -277,12 +277,12 @@
           Else
             @RetValStr = oObject(1&).GetElementsByTagName(sTagName)
           End If
-        End If    
+        End If
 
-        
-'      '-------------------------------------------------------  
+
+'      '-------------------------------------------------------
 '      '---Properties
-'      '---------------  
+'      '---------------
 '      Case "VALUE"  '---Support GET and SET. Programmer is free to support whatever event type
 '
 '        '---In all "value" cases we will return a string, so we can assign return type here
@@ -291,40 +291,40 @@
 '        Select Case Long lAction
 '          Case %Class_Action_Get
 '            @RetValStr = oObject(1&).sGet
-'            
+'
 '          Case %Class_Action_Set
 '            lEqualType = thinBasic_CheckEqualType_Mandatory
 '            If thinBasic_ErrorFree Then
 '              Select Case Long lEqualType
-'    
+'
 '                '---Assignment
 '                Case  %Equal_EQ
 '                      oObject(1&).sSet(thinBasic_Parse1String)
-'    
-'                '---Assignment with concatenation      
+'
+'                '---Assignment with concatenation
 '                Case  %Equal_PLUSEQUAL, _
 '                      %Equal_CONCEQUAL, _
 '                      %Equal_POINTEQUAL
-'    
+'
 '                      oObject(1&).sSet(oObject(1&).sGet() & thinBasic_Parse1String)
 '                Case Else
-'                  '---Not supperted for strings 
+'                  '---Not supperted for strings
 '                  'MsgBox FuncName$ & Str$(lEqualType)
 '              End Select
 '            End If
-'          
+'
 '        End Select
 
       Case Else
-        thinBasic_RunTimeError(%ERR__CLASS_METHODPROPERTY_NOTFOUND)  
+        thinBasic_RunTimeError(%ERR__CLASS_METHODPROPERTY_NOTFOUND)
     End Select
-    
-    '-------------------------------------------------------  
+
+    '-------------------------------------------------------
     '---Compound methods
-    '---------------  
+    '---------------
     '   In case we have compound methods (defined as point after a method or property
     '   call this function recursively.
-    '---------------  
+    '---------------
     If thinBasic_CheckPoint_Optional Then
       Function = Msxml2_DOMDocument_ClassHandling ( _
                                                   pObject   , _
@@ -333,9 +333,9 @@
                                                   RetValNum , _
                                                   RetValStr , _
                                                   %TRUE       _
-                                                )                                         
+                                                )
     End If
-      
+
   End Function
 
   '--------------------------------------------------------------------------------------
@@ -403,4 +403,3 @@
     End If
 
   End Sub
-

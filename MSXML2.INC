@@ -314,7 +314,7 @@ Enum Enum__XHR_PROPERTY
 End Enum
 
 
-' User-Defined Types 
+' User-Defined Types
 Type Tag___msxml6_ReferenceRemainingTypes__
     PB___tagDomNodeType__ As Long
     PB___domNodeType__ As Long
@@ -338,7 +338,7 @@ Type Tag___msxml6_ReferenceRemainingTypes__
     PB___schemaWhitespace__ As Long
     PB___schemaTypeVarietyEnum__ As Long
     PB___schemaTypeVariety__ As Long
-End Type 
+End Type
 
 Type Tag__FILETIME
     dwLowDateTime As Dword
@@ -359,8 +359,8 @@ End Type
 ' Interface Name  : IXMLDOMNode
 ' Description     : Core DOM node interface
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IXMLDOMNode $IID_MSXML2_IXMLDOMNode 
+' be returned by a Method or Property in this library.
+Interface IXMLDOMNode $IID_MSXML2_IXMLDOMNode
     Inherit IDispatch
 
     Property Get nodeName <2> () As WString
@@ -403,8 +403,8 @@ End Interface
 
 ' Interface Name  : IXMLDOMNodeList
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IXMLDOMNodeList $IID_MSXML2_IXMLDOMNodeList 
+' be returned by a Method or Property in this library.
+Interface IXMLDOMNodeList $IID_MSXML2_IXMLDOMNodeList
     Inherit IDispatch
 
     Property Get item <0> (ByVal index As Long) As IXMLDOMNode
@@ -416,8 +416,8 @@ End Interface
 
 ' Interface Name  : IXMLDOMNamedNodeMap
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IXMLDOMNamedNodeMap $IID_MSXML2_IXMLDOMNamedNodeMap 
+' be returned by a Method or Property in this library.
+Interface IXMLDOMNamedNodeMap $IID_MSXML2_IXMLDOMNamedNodeMap
     Inherit IDispatch
 
     Method getNamedItem <83> (Byval PB_name As WString) As IXMLDOMNode
@@ -434,8 +434,8 @@ End Interface
 
 ' Interface Name  : IXMLDOMDocument
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IXMLDOMDocument $IID_MSXML2_IXMLDOMDocument 
+' be returned by a Method or Property in this library.
+Interface IXMLDOMDocument $IID_MSXML2_IXMLDOMDocument
     Inherit IDispatch
 
     Property Get nodeName <2> () As WString
@@ -513,8 +513,8 @@ End Interface
 
 ' Interface Name  : IXMLDOMDocumentType
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IXMLDOMDocumentType $IID_MSXML2_IXMLDOMDocumentType 
+' be returned by a Method or Property in this library.
+Interface IXMLDOMDocumentType $IID_MSXML2_IXMLDOMDocumentType
     Inherit IDispatch
 
     Property Get nodeName <2> () As WString
@@ -560,8 +560,8 @@ End Interface
 
 ' Interface Name  : IXMLDOMImplementation
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IXMLDOMImplementation $IID_MSXML2_IXMLDOMImplementation 
+' be returned by a Method or Property in this library.
+Interface IXMLDOMImplementation $IID_MSXML2_IXMLDOMImplementation
     Inherit IDispatch
 
     Method hasFeature <145> (Byval feature As WString, Byval version As WString) As Integer
@@ -569,8 +569,8 @@ End Interface
 
 ' Interface Name  : IXMLDOMElement
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IXMLDOMElement $IID_MSXML2_IXMLDOMElement 
+' be returned by a Method or Property in this library.
+Interface IXMLDOMElement $IID_MSXML2_IXMLDOMElement
     Inherit IDispatch
 
     Property Get nodeName <2> () As WString
@@ -622,8 +622,8 @@ End Interface
 
 ' Interface Name  : IXMLDOMAttribute
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IXMLDOMAttribute $IID_MSXML2_IXMLDOMAttribute 
+' be returned by a Method or Property in this library.
+Interface IXMLDOMAttribute $IID_MSXML2_IXMLDOMAttribute
     Inherit IDispatch
 
     Property Get nodeName <2> () As WString
@@ -669,8 +669,8 @@ End Interface
 
 ' Interface Name  : IXMLDOMDocumentFragment
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IXMLDOMDocumentFragment $IID_MSXML2_IXMLDOMDocumentFragment 
+' be returned by a Method or Property in this library.
+Interface IXMLDOMDocumentFragment $IID_MSXML2_IXMLDOMDocumentFragment
     Inherit IDispatch
 
     Property Get nodeName <2> () As WString
@@ -713,8 +713,8 @@ End Interface
 
 ' Interface Name  : IXMLDOMText
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IXMLDOMText $IID_MSXML2_IXMLDOMText 
+' be returned by a Method or Property in this library.
+Interface IXMLDOMText $IID_MSXML2_IXMLDOMText
     Inherit IDispatch
 
     Property Get nodeName <2> () As WString
@@ -766,8 +766,8 @@ End Interface
 
 ' Interface Name  : IXMLDOMCharacterData
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IXMLDOMCharacterData $IID_MSXML2_IXMLDOMCharacterData 
+' be returned by a Method or Property in this library.
+Interface IXMLDOMCharacterData $IID_MSXML2_IXMLDOMCharacterData
     Inherit IDispatch
 
     Property Get nodeName <2> () As WString
@@ -818,8 +818,8 @@ End Interface
 
 ' Interface Name  : IXMLDOMComment
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IXMLDOMComment $IID_MSXML2_IXMLDOMComment 
+' be returned by a Method or Property in this library.
+Interface IXMLDOMComment $IID_MSXML2_IXMLDOMComment
     Inherit IDispatch
 
     Property Get nodeName <2> () As WString
@@ -870,8 +870,8 @@ End Interface
 
 ' Interface Name  : IXMLDOMCDATASection
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IXMLDOMCDATASection $IID_MSXML2_IXMLDOMCDATASection 
+' be returned by a Method or Property in this library.
+Interface IXMLDOMCDATASection $IID_MSXML2_IXMLDOMCDATASection
     Inherit IDispatch
 
     Property Get nodeName <2> () As WString
@@ -923,8 +923,8 @@ End Interface
 
 ' Interface Name  : IXMLDOMProcessingInstruction
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IXMLDOMProcessingInstruction $IID_MSXML2_IXMLDOMProcessingInstruction 
+' be returned by a Method or Property in this library.
+Interface IXMLDOMProcessingInstruction $IID_MSXML2_IXMLDOMProcessingInstruction
     Inherit IDispatch
 
     Property Get nodeName <2> () As WString
@@ -970,8 +970,8 @@ End Interface
 
 ' Interface Name  : IXMLDOMEntityReference
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IXMLDOMEntityReference $IID_MSXML2_IXMLDOMEntityReference 
+' be returned by a Method or Property in this library.
+Interface IXMLDOMEntityReference $IID_MSXML2_IXMLDOMEntityReference
     Inherit IDispatch
 
     Property Get nodeName <2> () As WString
@@ -1015,8 +1015,8 @@ End Interface
 ' Interface Name  : IXMLDOMParseError
 ' Description     : structure for reporting parser errors
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IXMLDOMParseError $IID_MSXML2_IXMLDOMParseError 
+' be returned by a Method or Property in this library.
+Interface IXMLDOMParseError $IID_MSXML2_IXMLDOMParseError
     Inherit IDispatch
 
     Property Get errorCode <0> () As Long
@@ -1030,8 +1030,8 @@ End Interface
 
 ' Interface Name  : IXMLDOMNotation
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IXMLDOMNotation $IID_MSXML2_IXMLDOMNotation 
+' be returned by a Method or Property in this library.
+Interface IXMLDOMNotation $IID_MSXML2_IXMLDOMNotation
     Inherit IDispatch
 
     Property Get nodeName <2> () As WString
@@ -1076,8 +1076,8 @@ End Interface
 
 ' Interface Name  : IXMLDOMEntity
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IXMLDOMEntity $IID_MSXML2_IXMLDOMEntity 
+' be returned by a Method or Property in this library.
+Interface IXMLDOMEntity $IID_MSXML2_IXMLDOMEntity
     Inherit IDispatch
 
     Property Get nodeName <2> () As WString
@@ -1124,8 +1124,8 @@ End Interface
 ' Interface Name  : IXMLDOMParseError2
 ' Description     : structure for reporting parser errors
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IXMLDOMParseError2 $IID_MSXML2_IXMLDOMParseError2 
+' be returned by a Method or Property in this library.
+Interface IXMLDOMParseError2 $IID_MSXML2_IXMLDOMParseError2
     Inherit IDispatch
 
     Property Get errorCode <0> () As Long
@@ -1144,8 +1144,8 @@ End Interface
 ' Interface Name  : IXMLDOMParseErrorCollection
 ' Description     : structure for reporting parser errors
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IXMLDOMParseErrorCollection $IID_MSXML2_IXMLDOMParseErrorCollection 
+' be returned by a Method or Property in this library.
+Interface IXMLDOMParseErrorCollection $IID_MSXML2_IXMLDOMParseErrorCollection
     Inherit IDispatch
 
     Property Get item <0> (ByVal index As Long) As IXMLDOMParseError2
@@ -1158,8 +1158,8 @@ End Interface
 ' Interface Name  : IXTLRuntime
 ' Description     : XTL runtime object
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IXTLRuntime $IID_MSXML2_IXTLRuntime 
+' be returned by a Method or Property in this library.
+Interface IXTLRuntime $IID_MSXML2_IXTLRuntime
     Inherit IDispatch
 
     Property Get nodeName <2> () As WString
@@ -1217,8 +1217,8 @@ End Interface
 ' ClassID         : $CLSID_MSXML2_SAXXMLReader60
 ' Version ProgID  : $PROGID_MSXML2_SAXXMLReader600
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface ISAXXMLReader $IID_MSXML2_ISAXXMLReader 
+' be returned by a Method or Property in this library.
+Interface ISAXXMLReader $IID_MSXML2_ISAXXMLReader
     Inherit IUnknown
 
     Method getFeature(ByRef In pwchName As Word, ByRef pvfValue As Integer) As Long
@@ -1244,8 +1244,8 @@ End Interface
 ' Interface Name  : ISAXEntityResolver
 ' Description     : ISAXEntityResolver interface
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface ISAXEntityResolver $IID_MSXML2_ISAXEntityResolver 
+' be returned by a Method or Property in this library.
+Interface ISAXEntityResolver $IID_MSXML2_ISAXEntityResolver
     Inherit IUnknown
 
     Method resolveEntity(ByRef In pwchPublicId As Word, ByRef In pwchSystemId As Word, ByRef pvarInput As Variant) As Long
@@ -1257,8 +1257,8 @@ End Interface
 ' ClassID         : $CLSID_MSXML2_MXHTMLWriter60
 ' Version ProgID  : $PROGID_MSXML2_MXHTMLWriter600
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface ISAXContentHandler $IID_MSXML2_ISAXContentHandler 
+' be returned by a Method or Property in this library.
+Interface ISAXContentHandler $IID_MSXML2_ISAXContentHandler
     Inherit IUnknown
 
     Method putDocumentLocator(Byval pLocator As ISAXLocator) As Long
@@ -1282,8 +1282,8 @@ End Interface
 ' Interface Name  : ISAXLocator
 ' Description     : ISAXLocator interface
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface ISAXLocator $IID_MSXML2_ISAXLocator 
+' be returned by a Method or Property in this library.
+Interface ISAXLocator $IID_MSXML2_ISAXLocator
     Inherit IUnknown
 
     Method getColumnNumber(ByRef pnColumn As Long) As Long
@@ -1298,8 +1298,8 @@ End Interface
 ' ClassID         : $CLSID_MSXML2_SAXAttributes60
 ' Version ProgID  : $PROGID_MSXML2_SAXAttributes600
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface ISAXAttributes $IID_MSXML2_ISAXAttributes 
+' be returned by a Method or Property in this library.
+Interface ISAXAttributes $IID_MSXML2_ISAXAttributes
     Inherit IUnknown
 
     Method getLength(ByRef pnLength As Long) As Long
@@ -1329,8 +1329,8 @@ End Interface
 ' ClassID         : $CLSID_MSXML2_MXHTMLWriter60
 ' Version ProgID  : $PROGID_MSXML2_MXHTMLWriter600
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface ISAXDTDHandler $IID_MSXML2_ISAXDTDHandler 
+' be returned by a Method or Property in this library.
+Interface ISAXDTDHandler $IID_MSXML2_ISAXDTDHandler
     Inherit IUnknown
 
     Method notationDecl(ByRef In pwchName As Word, Byval cchName As Long, ByRef In pwchPublicId As Word, Byval cchPublicId _
@@ -1346,8 +1346,8 @@ End Interface
 ' ClassID         : $CLSID_MSXML2_MXHTMLWriter60
 ' Version ProgID  : $PROGID_MSXML2_MXHTMLWriter600
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface ISAXErrorHandler $IID_MSXML2_ISAXErrorHandler 
+' be returned by a Method or Property in this library.
+Interface ISAXErrorHandler $IID_MSXML2_ISAXErrorHandler
     Inherit IUnknown
 
     Method error(Byval pLocator As ISAXLocator, ByRef In pwchErrorMessage As Word, Byval hrErrorCode As Long) As Long
@@ -1359,8 +1359,8 @@ End Interface
 ' Interface Name  : ISAXXMLFilter
 ' Description     : ISAXXMLFilter interface
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface ISAXXMLFilter $IID_MSXML2_ISAXXMLFilter 
+' be returned by a Method or Property in this library.
+Interface ISAXXMLFilter $IID_MSXML2_ISAXXMLFilter
     Inherit IUnknown
 
     Method getFeature(ByRef In pwchName As Word, ByRef pvfValue As Integer) As Long
@@ -1388,8 +1388,8 @@ End Interface
 ' Interface Name  : IVBSAXXMLFilter
 ' Description     : IVBSAXXMLFilter interface
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IVBSAXXMLFilter $IID_MSXML2_IVBSAXXMLFilter 
+' be returned by a Method or Property in this library.
+Interface IVBSAXXMLFilter $IID_MSXML2_IVBSAXXMLFilter
     Inherit IDispatch
 
     Property Get parent <1309> () As IVBSAXXMLReader
@@ -1401,7 +1401,7 @@ End Interface
 ' Class Name      : SAXXMLReader60
 ' ClassID         : $CLSID_MSXML2_SAXXMLReader60
 ' Version ProgID  : $PROGID_MSXML2_SAXXMLReader600
-Interface IVBSAXXMLReader $IID_MSXML2_IVBSAXXMLReader 
+Interface IVBSAXXMLReader $IID_MSXML2_IVBSAXXMLReader
     Inherit IDispatch
 
     Method getFeature <1282> (Byval strName As WString) As Integer
@@ -1427,8 +1427,8 @@ End Interface
 ' Interface Name  : IVBSAXEntityResolver
 ' Description     : IVBSAXEntityResolver interface
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IVBSAXEntityResolver $IID_MSXML2_IVBSAXEntityResolver 
+' be returned by a Method or Property in this library.
+Interface IVBSAXEntityResolver $IID_MSXML2_IVBSAXEntityResolver
     Inherit IDispatch
 
     Method resolveEntity <1319> (ByRef InOut strPublicId As WString, ByRef InOut strSystemId As WString) As Variant
@@ -1439,7 +1439,7 @@ End Interface
 ' Class Name      : MXHTMLWriter60
 ' ClassID         : $CLSID_MSXML2_MXHTMLWriter60
 ' Version ProgID  : $PROGID_MSXML2_MXHTMLWriter600
-Interface IVBSAXContentHandler $IID_MSXML2_IVBSAXContentHandler 
+Interface IVBSAXContentHandler $IID_MSXML2_IVBSAXContentHandler
     Inherit IDispatch
 
     Property Set PutRef_documentLocator <1322> (ByVal Rhs As IVBSAXLocator)
@@ -1460,8 +1460,8 @@ End Interface
 ' Interface Name  : IVBSAXLocator
 ' Description     : IVBSAXLocator interface
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IVBSAXLocator $IID_MSXML2_IVBSAXLocator 
+' be returned by a Method or Property in this library.
+Interface IVBSAXLocator $IID_MSXML2_IVBSAXLocator
     Inherit IDispatch
 
     Property Get columnNumber <1313> () As Long
@@ -1475,7 +1475,7 @@ End Interface
 ' Class Name      : SAXAttributes60
 ' ClassID         : $CLSID_MSXML2_SAXAttributes60
 ' Version ProgID  : $PROGID_MSXML2_SAXAttributes600
-Interface IVBSAXAttributes $IID_MSXML2_IVBSAXAttributes 
+Interface IVBSAXAttributes $IID_MSXML2_IVBSAXAttributes
     Inherit IDispatch
 
     Property Get length <1344> () As Long
@@ -1497,7 +1497,7 @@ End Interface
 ' Class Name      : MXHTMLWriter60
 ' ClassID         : $CLSID_MSXML2_MXHTMLWriter60
 ' Version ProgID  : $PROGID_MSXML2_MXHTMLWriter600
-Interface IVBSAXDTDHandler $IID_MSXML2_IVBSAXDTDHandler 
+Interface IVBSAXDTDHandler $IID_MSXML2_IVBSAXDTDHandler
     Inherit IDispatch
 
     Method notationDecl <1335> (ByRef InOut strName As WString, ByRef InOut strPublicId As WString, ByRef InOut strSystemId _
@@ -1511,7 +1511,7 @@ End Interface
 ' Class Name      : MXHTMLWriter60
 ' ClassID         : $CLSID_MSXML2_MXHTMLWriter60
 ' Version ProgID  : $PROGID_MSXML2_MXHTMLWriter600
-Interface IVBSAXErrorHandler $IID_MSXML2_IVBSAXErrorHandler 
+Interface IVBSAXErrorHandler $IID_MSXML2_IVBSAXErrorHandler
     Inherit IDispatch
 
     Method error <1339> (Byval oLocator As IVBSAXLocator, ByRef InOut strErrorMessage As WString, Byval nErrorCode As Long)
@@ -1524,8 +1524,8 @@ End Interface
 ' Interface Name  : IMXReaderControl
 ' Description     : IMXReaderControl interface
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IMXReaderControl $IID_MSXML2_IMXReaderControl 
+' be returned by a Method or Property in this library.
+Interface IMXReaderControl $IID_MSXML2_IMXReaderControl
     Inherit IDispatch
 
     Method abort <1398> ()
@@ -1536,8 +1536,8 @@ End Interface
 ' Interface Name  : IMXSchemaDeclHandler
 ' Description     : IMXSchemaDeclHandler interface
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IMXSchemaDeclHandler $IID_MSXML2_IMXSchemaDeclHandler 
+' be returned by a Method or Property in this library.
+Interface IMXSchemaDeclHandler $IID_MSXML2_IMXSchemaDeclHandler
     Inherit IDispatch
 
     Method schemaElementDecl <1403> (Byval oSchemaElement As ISchemaElement)
@@ -1546,8 +1546,8 @@ End Interface
 ' Interface Name  : ISchemaElement
 ' Description     : XML Schema Element
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface ISchemaElement $IID_MSXML2_ISchemaElement 
+' be returned by a Method or Property in this library.
+Interface ISchemaElement $IID_MSXML2_ISchemaElement
     Inherit IDispatch
 
     Property Get name <1457> () As WString
@@ -1575,8 +1575,8 @@ End Interface
 ' Interface Name  : ISchemaParticle
 ' Description     : XML Schema Particle
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface ISchemaParticle $IID_MSXML2_ISchemaParticle 
+' be returned by a Method or Property in this library.
+Interface ISchemaParticle $IID_MSXML2_ISchemaParticle
     Inherit IDispatch
 
     Property Get name <1457> () As WString
@@ -1593,8 +1593,8 @@ End Interface
 ' Interface Name  : ISchemaItem
 ' Description     : XML Schema Item
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface ISchemaItem $IID_MSXML2_ISchemaItem 
+' be returned by a Method or Property in this library.
+Interface ISchemaItem $IID_MSXML2_ISchemaItem
     Inherit IDispatch
 
     Property Get name <1457> () As WString
@@ -1609,8 +1609,8 @@ End Interface
 ' Interface Name  : ISchema
 ' Description     : XML Schema
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface ISchema $IID_MSXML2_ISchema 
+' be returned by a Method or Property in this library.
+Interface ISchema $IID_MSXML2_ISchema
     Inherit IDispatch
 
     Property Get name <1457> () As WString
@@ -1634,8 +1634,8 @@ End Interface
 ' Interface Name  : ISchemaItemCollection
 ' Description     : XML Schema Item Collection
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface ISchemaItemCollection $IID_MSXML2_ISchemaItemCollection 
+' be returned by a Method or Property in this library.
+Interface ISchemaItemCollection $IID_MSXML2_ISchemaItemCollection
     Inherit IDispatch
 
     Property Get item <0> (ByVal index As Long) As ISchemaItem
@@ -1648,8 +1648,8 @@ End Interface
 ' Interface Name  : ISchemaStringCollection
 ' Description     : XML Schema String Collection
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface ISchemaStringCollection $IID_MSXML2_ISchemaStringCollection 
+' be returned by a Method or Property in this library.
+Interface ISchemaStringCollection $IID_MSXML2_ISchemaStringCollection
     Inherit IDispatch
 
     Property Get item <0> (ByVal index As Long) As WString
@@ -1660,8 +1660,8 @@ End Interface
 ' Interface Name  : ISchemaType
 ' Description     : XML Schema Type
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface ISchemaType $IID_MSXML2_ISchemaType 
+' be returned by a Method or Property in this library.
+Interface ISchemaType $IID_MSXML2_ISchemaType
     Inherit IDispatch
 
     Property Get name <1457> () As WString
@@ -1693,8 +1693,8 @@ End Interface
 ' Interface Name  : ISchemaComplexType
 ' Description     : XML Schema Complex Type
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface ISchemaComplexType $IID_MSXML2_ISchemaComplexType 
+' be returned by a Method or Property in this library.
+Interface ISchemaComplexType $IID_MSXML2_ISchemaComplexType
     Inherit IDispatch
 
     Property Get name <1457> () As WString
@@ -1732,8 +1732,8 @@ End Interface
 ' Interface Name  : ISchemaAny
 ' Description     : XML Schema Any
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface ISchemaAny $IID_MSXML2_ISchemaAny 
+' be returned by a Method or Property in this library.
+Interface ISchemaAny $IID_MSXML2_ISchemaAny
     Inherit IDispatch
 
     Property Get name <1457> () As WString
@@ -1752,8 +1752,8 @@ End Interface
 ' Interface Name  : ISchemaModelGroup
 ' Description     : XML Schema Type
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface ISchemaModelGroup $IID_MSXML2_ISchemaModelGroup 
+' be returned by a Method or Property in this library.
+Interface ISchemaModelGroup $IID_MSXML2_ISchemaModelGroup
     Inherit IDispatch
 
     Property Get name <1457> () As WString
@@ -1771,8 +1771,8 @@ End Interface
 ' Interface Name  : IMXXMLFilter
 ' Description     : IMXXMLFilter interface
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IMXXMLFilter $IID_MSXML2_IMXXMLFilter 
+' be returned by a Method or Property in this library.
+Interface IMXXMLFilter $IID_MSXML2_IMXXMLFilter
     Inherit IDispatch
 
     Method getFeature <1423> (Byval strName As WString) As Integer
@@ -1792,8 +1792,8 @@ End Interface
 ' Interface Name  : ISchemaAttribute
 ' Description     : XML Schema Attribute
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface ISchemaAttribute $IID_MSXML2_ISchemaAttribute 
+' be returned by a Method or Property in this library.
+Interface ISchemaAttribute $IID_MSXML2_ISchemaAttribute
     Inherit IDispatch
 
     Property Get name <1457> () As WString
@@ -1814,8 +1814,8 @@ End Interface
 ' Interface Name  : ISchemaAttributeGroup
 ' Description     : XML Schema Attribute Group
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface ISchemaAttributeGroup $IID_MSXML2_ISchemaAttributeGroup 
+' be returned by a Method or Property in this library.
+Interface ISchemaAttributeGroup $IID_MSXML2_ISchemaAttributeGroup
     Inherit IDispatch
 
     Property Get name <1457> () As WString
@@ -1832,8 +1832,8 @@ End Interface
 ' Interface Name  : ISchemaIdentityConstraint
 ' Description     : XML Schema Any
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface ISchemaIdentityConstraint $IID_MSXML2_ISchemaIdentityConstraint 
+' be returned by a Method or Property in this library.
+Interface ISchemaIdentityConstraint $IID_MSXML2_ISchemaIdentityConstraint
     Inherit IDispatch
 
     Property Get name <1457> () As WString
@@ -1851,8 +1851,8 @@ End Interface
 ' Interface Name  : ISchemaNotation
 ' Description     : XML Schema Notation
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface ISchemaNotation $IID_MSXML2_ISchemaNotation 
+' be returned by a Method or Property in this library.
+Interface ISchemaNotation $IID_MSXML2_ISchemaNotation
     Inherit IDispatch
 
     Property Get name <1457> () As WString
@@ -1868,8 +1868,8 @@ End Interface
 
 ' Interface Name  : IXMLDOMSelection
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IXMLDOMSelection $IID_MSXML2_IXMLDOMSelection 
+' be returned by a Method or Property in this library.
+Interface IXMLDOMSelection $IID_MSXML2_IXMLDOMSelection
     Inherit IDispatch
 
     Property Get item <0> (ByVal index As Long) As IXMLDOMNode
@@ -1894,7 +1894,7 @@ End Interface
 ' ClassID         : $CLSID_MSXML2_Event_XMLDOMDocumentEvents
 ' Version ProgID  : $PROGID_MSXML2_FreeThreadedDOMDocument600
 Class Class_XMLDOMDocumentEvents $CLSID_MSXML2_Event_XMLDOMDocumentEvents As Event
-    Interface XMLDOMDocumentEvents $IID_MSXML2_XMLDOMDocumentEvents 
+    Interface XMLDOMDocumentEvents $IID_MSXML2_XMLDOMDocumentEvents
         Inherit IDispatch
 
         Method ondataavailable <198> ()
@@ -1912,7 +1912,7 @@ End Class
 ' Class Name      : FreeThreadedDOMDocument60
 ' ClassID         : $CLSID_MSXML2_FreeThreadedDOMDocument60
 ' Version ProgID  : $PROGID_MSXML2_FreeThreadedDOMDocument600
-Interface IXMLDOMDocument3 $IID_MSXML2_IXMLDOMDocument3 
+Interface IXMLDOMDocument3 $IID_MSXML2_IXMLDOMDocument3
     Inherit IDispatch
 
     Property Get nodeName <2> () As WString
@@ -1998,8 +1998,8 @@ End Interface
 
 ' Interface Name  : IXMLDOMDocument2
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IXMLDOMDocument2 $IID_MSXML2_IXMLDOMDocument2 
+' be returned by a Method or Property in this library.
+Interface IXMLDOMDocument2 $IID_MSXML2_IXMLDOMDocument2
     Inherit IDispatch
 
     Property Get nodeName <2> () As WString
@@ -2084,8 +2084,8 @@ End Interface
 ' Interface Name  : IXMLDOMSchemaCollection
 ' Description     : XML Schemas Collection
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IXMLDOMSchemaCollection $IID_MSXML2_IXMLDOMSchemaCollection 
+' be returned by a Method or Property in this library.
+Interface IXMLDOMSchemaCollection $IID_MSXML2_IXMLDOMSchemaCollection
     Inherit IDispatch
 
     Method add <3> (Byval namespaceURI As WString, Byval var As Variant)
@@ -2102,7 +2102,7 @@ End Interface
 ' Class Name      : XMLSchemaCache60
 ' ClassID         : $CLSID_MSXML2_XMLSchemaCache60
 ' Version ProgID  : $PROGID_MSXML2_XMLSchemaCache600
-Interface IXMLDOMSchemaCollection2 $IID_MSXML2_IXMLDOMSchemaCollection2 
+Interface IXMLDOMSchemaCollection2 $IID_MSXML2_IXMLDOMSchemaCollection2
     Inherit IDispatch
 
     Method add <3> (Byval namespaceURI As WString, Byval var As Variant)
@@ -2124,7 +2124,7 @@ End Interface
 ' Class Name      : XSLTemplate60
 ' ClassID         : $CLSID_MSXML2_XSLTemplate60
 ' Version ProgID  : $PROGID_MSXML2_XSLTemplate600
-Interface IXSLTemplate $IID_MSXML2_IXSLTemplate 
+Interface IXSLTemplate $IID_MSXML2_IXSLTemplate
     Inherit IDispatch
 
     Property Set PutRef_stylesheet <2> (ByVal stylesheet As IXMLDOMNode)
@@ -2135,8 +2135,8 @@ End Interface
 ' Interface Name  : IXSLProcessor
 ' Description     : IXSLProcessor Interface
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IXSLProcessor $IID_MSXML2_IXSLProcessor 
+' be returned by a Method or Property in this library.
+Interface IXSLProcessor $IID_MSXML2_IXSLProcessor
     Inherit IDispatch
 
     Property Set input <2> (ByVal pVar As Variant)
@@ -2160,7 +2160,7 @@ End Interface
 ' Class Name      : XMLHTTP60
 ' ClassID         : $CLSID_MSXML2_XMLHTTP60
 ' Version ProgID  : $PROGID_MSXML2_XMLHTTP600
-Interface IXMLHTTPRequest $IID_MSXML2_IXMLHTTPRequest 
+Interface IXMLHTTPRequest $IID_MSXML2_IXMLHTTPRequest
     Inherit IDispatch
 
     Method open <1> (Byval bstrMethod As WString, Byval bstrUrl As WString, Opt Byval varAsync As Variant, Opt Byval _
@@ -2185,8 +2185,8 @@ End Interface
 ' Class Name      : FreeThreadedXMLHTTP60
 ' ClassID         : $CLSID_MSXML2_FreeThreadedXMLHTTP60
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IXMLHTTPRequest2 $IID_MSXML2_IXMLHTTPRequest2 
+' be returned by a Method or Property in this library.
+Interface IXMLHTTPRequest2 $IID_MSXML2_IXMLHTTPRequest2
     Inherit IUnknown
 
     Method open(ByRef In pwszMethod As WStringZ, ByRef In pwszUrl As WStringZ, Byval pStatusCallback As _
@@ -2207,8 +2207,8 @@ End Interface
 ' Interface Name  : IXMLHTTPRequest2Callback
 ' Description     : IXMLHTTPRequest2Callback Interface
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IXMLHTTPRequest2Callback $IID_MSXML2_IXMLHTTPRequest2Callback 
+' be returned by a Method or Property in this library.
+Interface IXMLHTTPRequest2Callback $IID_MSXML2_IXMLHTTPRequest2Callback
     Inherit IUnknown
 
     Method OnRedirect(Byval pXHR As IXMLHTTPRequest2, ByRef In pwszRedirectUrl As WStringZ) As Long
@@ -2221,8 +2221,8 @@ End Interface
 
 ' Interface Name  : ISequentialStream
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface ISequentialStream $IID_MSXML2_ISequentialStream 
+' be returned by a Method or Property in this library.
+Interface ISequentialStream $IID_MSXML2_ISequentialStream
     Inherit IUnknown
 
     Method RemoteRead(ByRef pv As Byte, Byval cb As DWord, ByRef pcbRead As DWord) As Long
@@ -2234,7 +2234,7 @@ End Interface
 ' Class Name      : ServerXMLHTTP60
 ' ClassID         : $CLSID_MSXML2_ServerXMLHTTP60
 ' Version ProgID  : $PROGID_MSXML2_ServerXMLHTTP600
-Interface IServerXMLHTTPRequest2 $IID_MSXML2_IServerXMLHTTPRequest2 
+Interface IServerXMLHTTPRequest2 $IID_MSXML2_IServerXMLHTTPRequest2
     Inherit IDispatch
 
     Method open <1> (Byval bstrMethod As WString, Byval bstrUrl As WString, Opt Byval varAsync As Variant, Opt Byval _
@@ -2265,8 +2265,8 @@ End Interface
 ' Interface Name  : IServerXMLHTTPRequest
 ' Description     : IServerXMLHTTPRequest Interface
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IServerXMLHTTPRequest $IID_MSXML2_IServerXMLHTTPRequest 
+' be returned by a Method or Property in this library.
+Interface IServerXMLHTTPRequest $IID_MSXML2_IServerXMLHTTPRequest
     Inherit IDispatch
 
     Method open <1> (Byval bstrMethod As WString, Byval bstrUrl As WString, Opt Byval varAsync As Variant, Opt Byval _
@@ -2296,7 +2296,7 @@ End Interface
 ' Class Name      : MXHTMLWriter60
 ' ClassID         : $CLSID_MSXML2_MXHTMLWriter60
 ' Version ProgID  : $PROGID_MSXML2_MXHTMLWriter600
-Interface IMXWriter $IID_MSXML2_IMXWriter 
+Interface IMXWriter $IID_MSXML2_IMXWriter
     Inherit IDispatch
 
     Property Set output <1385> (ByVal varDestination As Variant)
@@ -2324,8 +2324,8 @@ End Interface
 ' ClassID         : $CLSID_MSXML2_MXHTMLWriter60
 ' Version ProgID  : $PROGID_MSXML2_MXHTMLWriter600
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface ISAXDeclHandler $IID_MSXML2_ISAXDeclHandler 
+' be returned by a Method or Property in this library.
+Interface ISAXDeclHandler $IID_MSXML2_ISAXDeclHandler
     Inherit IUnknown
 
     Method elementDecl(ByRef In pwchName As Word, Byval cchName As Long, ByRef In pwchModel As Word, Byval cchModel As Long) _
@@ -2345,8 +2345,8 @@ End Interface
 ' ClassID         : $CLSID_MSXML2_MXHTMLWriter60
 ' Version ProgID  : $PROGID_MSXML2_MXHTMLWriter600
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface ISAXLexicalHandler $IID_MSXML2_ISAXLexicalHandler 
+' be returned by a Method or Property in this library.
+Interface ISAXLexicalHandler $IID_MSXML2_ISAXLexicalHandler
     Inherit IUnknown
 
     Method startDTD(ByRef In pwchName As Word, Byval cchName As Long, ByRef In pwchPublicId As Word, Byval cchPublicId As _
@@ -2364,7 +2364,7 @@ End Interface
 ' Class Name      : MXHTMLWriter60
 ' ClassID         : $CLSID_MSXML2_MXHTMLWriter60
 ' Version ProgID  : $PROGID_MSXML2_MXHTMLWriter600
-Interface IVBSAXDeclHandler $IID_MSXML2_IVBSAXDeclHandler 
+Interface IVBSAXDeclHandler $IID_MSXML2_IVBSAXDeclHandler
     Inherit IDispatch
 
     Method elementDecl <1367> (ByRef InOut strName As WString, ByRef InOut strModel As WString)
@@ -2380,7 +2380,7 @@ End Interface
 ' Class Name      : MXHTMLWriter60
 ' ClassID         : $CLSID_MSXML2_MXHTMLWriter60
 ' Version ProgID  : $PROGID_MSXML2_MXHTMLWriter600
-Interface IVBSAXLexicalHandler $IID_MSXML2_IVBSAXLexicalHandler 
+Interface IVBSAXLexicalHandler $IID_MSXML2_IVBSAXLexicalHandler
     Inherit IDispatch
 
     Method startDTD <1358> (ByRef InOut strName As WString, ByRef InOut strPublicId As WString, ByRef InOut strSystemId As _
@@ -2398,7 +2398,7 @@ End Interface
 ' Class Name      : SAXAttributes60
 ' ClassID         : $CLSID_MSXML2_SAXAttributes60
 ' Version ProgID  : $PROGID_MSXML2_SAXAttributes600
-Interface IMXAttributes $IID_MSXML2_IMXAttributes 
+Interface IMXAttributes $IID_MSXML2_IMXAttributes
     Inherit IDispatch
 
     Method addAttribute <1373> (Byval strURI As WString, Byval strLocalName As WString, Byval strQName As WString, Byval _
@@ -2421,7 +2421,7 @@ End Interface
 ' Class Name      : MXNamespaceManager60
 ' ClassID         : $CLSID_MSXML2_MXNamespaceManager60
 ' Version ProgID  : $PROGID_MSXML2_MXNamespaceManager600
-Interface IVBMXNamespaceManager $IID_MSXML2_IVBMXNamespaceManager 
+Interface IVBMXNamespaceManager $IID_MSXML2_IVBMXNamespaceManager
     Inherit IDispatch
 
     Property Set allowOverride <1406> (ByVal fOverride As Integer)
@@ -2440,8 +2440,8 @@ End Interface
 ' Interface Name  : IMXNamespacePrefixes
 ' Description     : IMXNamespacePrefixes interface
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IMXNamespacePrefixes $IID_MSXML2_IMXNamespacePrefixes 
+' be returned by a Method or Property in this library.
+Interface IMXNamespacePrefixes $IID_MSXML2_IMXNamespacePrefixes
     Inherit IDispatch
 
     Property Get item <0> (ByVal index As Long) As WString
@@ -2455,8 +2455,8 @@ End Interface
 ' ClassID         : $CLSID_MSXML2_MXNamespaceManager60
 ' Version ProgID  : $PROGID_MSXML2_MXNamespaceManager600
 ' This Interface cannot be created directly it can only
-' be returned by a Method or Property in this library. 
-Interface IMXNamespaceManager $IID_MSXML2_IMXNamespaceManager 
+' be returned by a Method or Property in this library.
+Interface IMXNamespaceManager $IID_MSXML2_IMXNamespaceManager
     Inherit IUnknown
 
     Method putAllowOverride(Byval fOverride As Integer) As Long
@@ -2472,5 +2472,3 @@ Interface IMXNamespaceManager $IID_MSXML2_IMXNamespaceManager
     Method getURI(ByRef In pwchPrefix As WStringZ, Byval pContextNode As IXMLDOMNode, ByRef InOut pwchUri As Word, ByRef _
         InOut pcchUri As Long) As Long
 End Interface
-
-
