@@ -1,5 +1,5 @@
 *.exe
 *.tbasicx
 *.tbasiccx
-!folder/
-folder/*
+!/
+/*
