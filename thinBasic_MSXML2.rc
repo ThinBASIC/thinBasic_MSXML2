@@ -1,5 +1,5 @@
-#include "C:\PB\PBWin80\WinAPI\resource.h"
-#include "C:\ThinBasic\Lib\version.h"
+#include "resource.h"
+#include "..\module_core\TBVersion.h"
 
 
 VS_VERSION_INFO VERSIONINFO

@@ -19,7 +19,7 @@
   #Resource "thinBasic_MSXML2.PBR"
 
   #Include Once "WIN32API.INC"
-  #Include Once "..\thinCore.INC"
+  #Include Once "..\module_core\thinCore.INC"
 
   #Include Once ".\MSXML2.INC"
   #Include Once ".\thinBasic_MSXML2_Msxml2_ServerXMLHTTP.Inc"
