@@ -20,12 +20,8 @@
       ' Do initialization
       pHTTPServer     = ANYCOM $PROGID_MSXML2_ServerXMLHTTP600 '$PROGID_Excel_Application
 
-      If IsObject(pHTTPServer) Then
-      Else
-        MsgBox _
-                "It was not possible to create a ServerXMLHTTP object " & $PROGID_MSXML2_ServerXMLHTTP600 & ")", _
-                %MB_OK Or %MB_ICONERROR, _
-                "MSXML2 module error"
+      If not IsObject(pHTTPServer) Then
+        thinBasic_RunTimeError(%ERR__MODULE_SPECIFIC, "It was not possible to create a ServerXMLHTTP object " & $PROGID_MSXML2_ServerXMLHTTP600 & ")")
       End If
     End Method
 
