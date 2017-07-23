@@ -18,6 +18,7 @@ Clone [module_core](https://github.com/ThinBASIC/module_core) in a way it is pla
 
 ### Script example using this module
 
+######Connect and download some JSONs
 ```thinBasic
   Uses "MSXML2"
   Uses "Console"
@@ -60,3 +61,61 @@ Clone [module_core](https://github.com/ThinBASIC/module_core) in a way it is pla
   WaitKey
 ```
 
+######Connect to a bank exposing some REST API and make requests sending headers
+```thinBasic
+  Uses "MSXML2"
+  Uses "Console"
+  uses "File"
+
+  Dim oHTTP As new ServerXMLHTTPRequest
+  oHTTP.SetTimeOuts(60000, 60000, 60000, 60000)
+
+  '------------------------------------------------------------
+  ' Get account movements in Sync mode
+  '------------------------------------------------------------
+  printl "---Get account movements Sync---" in %CColor_fYellow
+  oHTTP.Open("POST", "https://sandbox.platfr.io/api/banking/v1/accounts/movementslist")', %FALSE)
+  oHTTP.setRequestHeader ("Content-Type", "application/json; charset=utf-8")
+  oHTTP.Send(" {""accountNumber"": ""7652XX380XX18"", ""startdate"": ""01/01/2017"", ""enddate"": ""06/01/2017""} ")
+  PrintL "Status:", oHTTP.Status, "(" & oHTTP.Statustext & ")"
+  PrintL oHTTP.ResponseText
+  file_save(app_sourcepath & "AccountMovements.json", oHTTP.ResponseText)
+  
+  printl oHTTP.getAllResponseHeaders
+  printl "Content-Type:", oHTTP.getResponseHeader("Content-Type")
+  
+
+  PrintL
+
+  '------------------------------------------------------------
+  ' Get account movements in ASync.
+  ' With ASync you need to test oHTTP.ReadyState till it is %ServerXMLHTTP_COMPLETED
+  '------------------------------------------------------------
+  printl "---Get account movements ASync---" in %CColor_fYellow
+  oHTTP.Open("POST", "https://sandbox.platfr.io/api/banking/v1/accounts/movementslist", %TRUE)
+  oHTTP.setRequestHeader ("Content-Type", "application/json; charset=utf-8")
+  oHTTP.Send(" {""accountNumber"": ""7652XX380XX18"", ""startdate"": ""01/01/2017"", ""enddate"": ""06/01/2017""} ")
+  PrintL
+  print "State:"
+  while oHTTP.ReadyState <> %ServerXMLHTTP_COMPLETED
+    print "[" & oHTTP.ReadyState & "]"
+    sleep 40
+  Wend
+  PrintL
+  PrintL "Status:", oHTTP.Status, "(" & oHTTP.Statustext & ")"
+  PrintL oHTTP.ResponseText
+
+  PrintL
+  
+  '------------------------------------------------------------
+  ' Get account balance in Sync mode
+  '------------------------------------------------------------
+  printl "'---Get account balance Sync---" in %CColor_fYellow
+  oHTTP.Open("POST", "https://sandbox.platfr.io/api/banking/v1/balance/getbalance", %FALSE)
+  oHTTP.setRequestHeader ("Content-Type", "application/json; charset=utf-8")
+  oHTTP.Send(" {""accountNumber"": ""7652XX380XX18""} ")
+  PrintL "Status:", oHTTP.Status, "(" & oHTTP.Statustext & ")"
+  PrintL oHTTP.ResponseText
+  
+  WaitKey
+```
