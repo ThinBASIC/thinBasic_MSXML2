@@ -18,7 +18,7 @@ Clone [module_core](https://github.com/ThinBASIC/module_core) in a way it is pla
 
 ### Script example using this module
 
-######Connect and download some JSONs
+**Connect and download some JSONs**
 ```thinBasic
   Uses "MSXML2"
   Uses "Console"
@@ -61,7 +61,7 @@ Clone [module_core](https://github.com/ThinBASIC/module_core) in a way it is pla
   WaitKey
 ```
 
-######Connect to a bank exposing some REST API and make requests sending headers
+**Connect to a bank exposing some REST API and make requests sending headers**
 ```thinBasic
   Uses "MSXML2"
   Uses "Console"
