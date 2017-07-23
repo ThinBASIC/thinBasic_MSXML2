@@ -15,3 +15,47 @@ PowerBASIC for Windows, v10.04
 
 ### Dependencies
 Clone [module_core](https://github.com/ThinBASIC/module_core) in a way it is placed in the same root directory as this project.
+
+### Script example using this module
+...thinBasic
+  Uses "MSXML2"
+  Uses "Console"
+
+  '---Reference for Fake JSon: http://jsonplaceholder.typicode.com/
+  
+  Dim oHTTP As new ServerXMLHTTPRequest
+  printl "IsObject:", oHTTP.IsObject
+  printl "IsNothing:", oHTTP.IsNothing
+
+  oHTTP.SetTimeOuts(60000, 60000, 60000, 60000)
+  '------------------------------------------------------------
+  ' Users
+  '------------------------------------------------------------
+  printl "---Users---" in %CColor_fYellow
+  oHTTP.Open("GET", "http://jsonplaceholder.typicode.com/users", %FALSE)
+  oHTTP.Send
+  PrintL "Status:", oHTTP.Status, "(" & oHTTP.Statustext & ")"
+  PrintL oHTTP.ResponseText
+
+  '------------------------------------------------------------
+  ' Single Post
+  '------------------------------------------------------------
+  printl "---Single Post---" in %CColor_fYellow
+  oHTTP.Open("GET", "http://jsonplaceholder.typicode.com/posts/1", %FALSE)
+  oHTTP.Send
+  PrintL "Status:", oHTTP.Status, "(" & oHTTP.Statustext & ")"
+  PrintL oHTTP.ResponseText
+
+  '------------------------------------------------------------
+  ' All Posts
+  '------------------------------------------------------------
+  printl "---All Posts---" in %CColor_fYellow
+  oHTTP.Open("GET", "http://jsonplaceholder.typicode.com/posts", %FALSE)
+  oHTTP.Send
+  PrintL "Status:", oHTTP.Status, "(" & oHTTP.Statustext & ")"
+  PrintL oHTTP.ResponseText
+  
+  PrintL
+  WaitKey
+...
+
