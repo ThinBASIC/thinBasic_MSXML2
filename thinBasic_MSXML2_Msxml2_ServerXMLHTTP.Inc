@@ -18,7 +18,7 @@
     '----------------------------------------------------------------------------
     Class Method Create()
       ' Do initialization
-      pHTTPServer     = ANYCOM $PROGID_MSXML2_ServerXMLHTTP600 '$PROGID_Excel_Application
+      pHTTPServer     = ANYCOM $PROGID_MSXML2_ServerXMLHTTP600
 
       If not IsObject(pHTTPServer) Then
         thinBasic_RunTimeError(%ERR__MODULE_SPECIFIC, "It was not possible to create a ServerXMLHTTP object " & $PROGID_MSXML2_ServerXMLHTTP600 & ")")
