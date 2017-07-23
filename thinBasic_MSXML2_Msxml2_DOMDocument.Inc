@@ -22,13 +22,6 @@
       ' Do initialization
       Set oDOMDoc = newcom $PROGID_MSXML2_DOMDocument600'"Msxml2.DOMDocument.6.0"
 
-'      If IsObject(oDOMDoc) Then
-'      Else
-'        MsgBox _
-'                "It was not possible to create a DOMDocument object (Msxml2.DOMDocument.6.0)", _
-'                %MB_OK Or %MB_ICONERROR, _
-'                "MSXML2 module error"
-'      End If
       If Not IsObject(oDOMDoc) Then
         thinBasic_RunTimeError(%ERR__MODULE_SPECIFIC, "It was not possible to create a DOMDocument object (" & $PROGID_MSXML2_DOMDocument600 & ")")
       End If
@@ -104,29 +97,6 @@
         Next
         oFields = Nothing
         Method = sResult
-'    v1 = sxml
-'    Object Call oDOM.LoadXML(v1)
-'    '
-'    'For j = 1 To ParseCount(snodeids)
-'        stag = "authenticationToken"'Parse$(snodeids,j)
-'        v1 = stag
-'        Object Call oDOM.getElementsByTagName(v1) To vresult
-'        Set oFields = vresult
-'        sresult = Variant$(vresult)
-'        ''
-'        Object Get oFields.length To vResult
-'        n = Variant#(vresult)
-'        '
-'        For i = 0 To n -1
-'            v1 = i
-'            Object Get oFields.Item(v1).Text To vresult
-'            If VariantVT(vresult) <> 0 Then
-'                'sresult += $CrLf + stag + "," + Variant$(vResult)
-'                sresult = Variant$(vResult)
-'            End If
-'        Next
-'        oFields = Nothing
-'    'Next
 
       End Method
 
@@ -197,43 +167,6 @@
           End If
         End If
 
-'      Case "GetElementsByTagName"
-'        '---We need to tell thinCore what type of info we are returning assigning to return function value the type
-'        '---Than assign to @RetValNum or @RetValStr the return value
-'        Function = %thinBasic_ReturnNumber
-'        '---parse Params
-'        pp = thinBasic_CheckOpenParens_Optional
-'        thinBasic_ParseString sHeader
-'        If thinBasic_CheckComma_Mandatory Then
-'          thinBasic_ParseString sValue
-'        End If
-'        If pp Then thinBasic_CheckCloseParens_Mandatory
-'        '---If all went fine ...
-'        If thinBasic_ErrorFree Then
-'          If lRecursive Then
-'            '@RetValNum = Left$(@RetValStr, nChars)
-'          Else
-'            @RetValNum = oObject(1&).SetRequestHeader(sHeader, sValue)
-'          End If
-'        End If
-'
-'      Case "SEND"
-'        '---We need to tell thinCore what type of info we are returning assigning to return function value the type
-'        '---Than assign to @RetValNum or @RetValStr the return value
-'        Function = %thinBasic_ReturnNumber
-'        '---parse Params
-'        pp = thinBasic_CheckOpenParens_Optional
-'        thinBasic_ParseString sBody
-'        If pp Then thinBasic_CheckCloseParens_Mandatory
-'        '---If all went fine ...
-'        If thinBasic_ErrorFree Then
-'          If lRecursive Then
-'            '@RetValNum = Left$(@RetValStr, nChars)
-'          Else
-'            @RetValNum = oObject(1&).Send(sBody)
-'          End If
-'        End If
-'
       Case "LEN"
         Function = %thinBasic_ReturnNumber
         @RetValNum = Len(@RetValStr)
