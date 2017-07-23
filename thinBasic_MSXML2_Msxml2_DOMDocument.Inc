@@ -20,16 +20,19 @@
     '----------------------------------------------------------------------------
     Class Method Create()
       ' Do initialization
-      Set oDOMDoc = newcom "Msxml2.DOMDocument.6.0"
+      Set oDOMDoc = newcom $PROGID_MSXML2_DOMDocument600'"Msxml2.DOMDocument.6.0"
 
-      If IsObject(oDOMDoc) Then
-      Else
-        MsgBox _
-                "It was not possible to create a DOMDocument object (Msxml2.DOMDocument.6.0)", _
-                %MB_OK Or %MB_ICONERROR, _
-                "MSXML2 module error"
+'      If IsObject(oDOMDoc) Then
+'      Else
+'        MsgBox _
+'                "It was not possible to create a DOMDocument object (Msxml2.DOMDocument.6.0)", _
+'                %MB_OK Or %MB_ICONERROR, _
+'                "MSXML2 module error"
+'      End If
+      If Not IsObject(oDOMDoc) Then
+        thinBasic_RunTimeError(%ERR__MODULE_SPECIFIC, "It was not possible to create a DOMDocument object (" & $PROGID_MSXML2_DOMDocument600 & ")")
       End If
-
+ 
     End Method
 
     Class Method Destroy()
