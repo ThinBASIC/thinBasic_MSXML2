@@ -17,7 +17,7 @@ PowerBASIC for Windows, v10.04
 Clone [module_core](https://github.com/ThinBASIC/module_core) in a way it is placed in the same root directory as this project.
 
 ### Script example using this module
-...thinBasic
+...
   Uses "MSXML2"
   Uses "Console"
 
