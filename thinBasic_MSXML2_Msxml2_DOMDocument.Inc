@@ -37,6 +37,7 @@
       oDOMDoc = Nothing
     End Method
 
+
     '----------------------------------------------------------------------------
     ' We need to define an interface that will contain public methods
     '----------------------------------------------------------------------------
@@ -45,6 +46,13 @@
 
       Inherit IUnknown
 
+
+      '----------------------------------------------------------------------------
+      ' GetClassObject
+      '----------------------------------------------------------------------------
+      Method Msxml2_DOMDocument_GetClassObject() As Dword
+        Method = VarPtr(oDOMDoc)
+      End Method
 
       '----------------------------------------------------------------------------
       '
@@ -119,42 +127,6 @@
 
       End Method
 
-      '----------------------------------------------------------------------------
-'      '
-'      '----------------------------------------------------------------------------
-'      Method Status() As Long
-'        Object Get  oHTTP.Status To lResult
-'        Method = lResult
-'      End Method
-'
-'      '----------------------------------------------------------------------------
-'      '
-'      '----------------------------------------------------------------------------
-'      Method StatusText() As String
-'        Object Get  oHTTP.StatusText To vResult
-'        Method = ACode$(Variant$(vResult))
-'      End Method
-'
-'      '----------------------------------------------------------------------------
-'      '
-'      '----------------------------------------------------------------------------
-'      Method ResponseText() As String
-'        Object Get  oHTTP.ResponseText To vResult
-'        Method = Variant$(vResult)
-'      End Method
-'
-'      '----------------------------------------------------------------------------
-'      '
-'      '----------------------------------------------------------------------------
-'      Method Send(ByVal sBody As String) As Long
-'        Local vBody As variant
-'
-'        Set vBody = sBody
-'
-'        Object Call oHTTP.Send(vBody) To vResult
-'        'Method = vResult
-'
-'      End Method
 
 
     End Interface
@@ -403,3 +375,13 @@
     End If
 
   End Sub
+
+  '----------------------------------------------------------------------------
+  Function Msxml2_DOMDocument_GetClassObject(ByVal pObject As Long) As Dword
+  '----------------------------------------------------------------------------
+    '---If all went fine ...
+    If thinBasic_ErrorFree Then
+      ReDim oObject(1& To 1&) As iMsxml2_DOMDocument At pObject
+      Function = oObject(1&).Msxml2_DOMDocument_GetClassObject()
+    End If
+  End Function

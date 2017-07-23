@@ -151,6 +151,16 @@
 
   End Sub
 
+  '----------------------------------------------------------------------------
+  Function Msxml2_ServerXMLHTTP_GetClassObject(ByVal pObject As Long) As Dword
+  '----------------------------------------------------------------------------
+    '---If all went fine ...
+    If thinBasic_ErrorFree Then
+      ReDim oObject(1& To 1&) As iMsxml2_ServerXMLHTTP At pObject
+      Function = oObject(1&).cServerXMLHTTP_GetClassObject()
+    End If
+  End Function
+
 
   '--------------------------------------------------------------------------------------
   Function Msxml2_ServerXMLHTTP_ClassHandling ( _

@@ -83,9 +83,11 @@
       '---If class was created, we just need to mandatory define constructor and destructor
       If pClass_Msxml2_XMLHTTP Then
         ' -- Constructor wrapper function needs to be linked in as _Create
-        RetCode = thinBasic_Class_AddMethod   (pClass_Msxml2_XMLHTTP, "_Create"       , %thinBasic_ReturnNone    , CodePtr(Msxml2_ServerXMLHTTP_Create          ))
+        RetCode = thinBasic_Class_AddMethod   (pClass_Msxml2_XMLHTTP, "_Create"         , %thinBasic_ReturnNone       , CodePtr(Msxml2_ServerXMLHTTP_Create         ))
         ' -- Destructor wrapper function needs to be linked in as _Destroy
-        RetCode = thinBasic_Class_AddMethod   (pClass_Msxml2_XMLHTTP, "_Destroy"      , %thinBasic_ReturnNone    , CodePtr(Msxml2_ServerXMLHTTP_Destroy         ))
+        RetCode = thinBasic_Class_AddMethod   (pClass_Msxml2_XMLHTTP, "_Destroy"        , %thinBasic_ReturnNone       , CodePtr(Msxml2_ServerXMLHTTP_Destroy        ))
+        ' -- ClassObject
+        RetCode = thinBasic_Class_AddMethod   (pClass_Msxml2_XMLHTTP, "_GetClassObject" , %thinBasic_ReturnCodedWord  , CodePtr(Msxml2_ServerXMLHTTP_GetClassObject ))
 
       End If
     '---------------------------------------------------------------------------
@@ -108,9 +110,11 @@
       '---If class was created, we just need to mandatory define constructor and destructor
       If pClass_Msxml2_XMLDOM Then
         ' -- Constructor wrapper function needs to be linked in as _Create
-        RetCode = thinBasic_Class_AddMethod   (pClass_Msxml2_XMLDOM, "_Create"       , %thinBasic_ReturnNone    , CodePtr(Msxml2_DOMDocument_Create          ))
+        RetCode = thinBasic_Class_AddMethod   (pClass_Msxml2_XMLDOM, "_Create"          , %thinBasic_ReturnNone       , CodePtr(Msxml2_DOMDocument_Create           ))
         ' -- Destructor wrapper function needs to be linked in as _Destroy
-        RetCode = thinBasic_Class_AddMethod   (pClass_Msxml2_XMLDOM, "_Destroy"      , %thinBasic_ReturnNone    , CodePtr(Msxml2_DOMDocument_Destroy         ))
+        RetCode = thinBasic_Class_AddMethod   (pClass_Msxml2_XMLDOM, "_Destroy"         , %thinBasic_ReturnNone       , CodePtr(Msxml2_DOMDocument_Destroy          ))
+        ' -- ClassObject
+'        RetCode = thinBasic_Class_AddMethod   (pClass_Msxml2_XMLDOM, "_GetClassObject"  , %thinBasic_ReturnCodedWord  , CodePtr(Msxml2_DOMDocument_GetClassObject   ))
 
       End If
     '---------------------------------------------------------------------------
