@@ -16,7 +16,7 @@
   #Register None
   #Dim All
 
-  #Resource "thinBasic_MSXML2.PBR"
+  #Resource RES "thinBasic_MSXML2.RES"
 
   #Include Once "WIN32API.INC"
   #Include Once "..\module_core\thinCore.INC"
