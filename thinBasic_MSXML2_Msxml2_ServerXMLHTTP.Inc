@@ -193,8 +193,8 @@
     Local econnectTimeout  As Ext
     Local esendTimeout     As Ext
     Local ereceiveTimeout  As Ext 
-    Local eWait         As Ext 
-    Local vWait         As variant
+    Local eWaitSec      As Ext 
+    Local vWaitSec      As variant
 
 
     '---We map our instance (whatever it will be) to a pObject pointer
@@ -425,16 +425,15 @@
         Function = %thinBasic_ReturnNumber
         '---parse Params
         pp = thinBasic_CheckOpenParens_Optional
-        thinBasic_ParseNumber eWait
-        Let vWait = eWait As Long
+        thinBasic_ParseNumber eWaitSec
+        Let vWaitSec = eWaitSec As Long
         If pp Then thinBasic_CheckCloseParens_Mandatory
         '---If all went fine ...
         If thinBasic_ErrorFree Then
           If lRecursive Then
             '@RetValNum = Left$(@RetValStr, nChars)
           Else
-            '@RetValNum =
-            lServerXMLHTTP(1&).WaitForResponse(eWait)
+            @RetValNum = lServerXMLHTTP(1&).WaitForResponse(vWaitSec)
           End If
         End If
 
