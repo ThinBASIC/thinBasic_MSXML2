@@ -181,18 +181,20 @@
     Local pp            As Long
     Local sName         As String
 
-    Local sMethod      As String
-    Local sUrl         As String
-    Local eAsync       As Ext
-    Local sHeader      As String
-    Local sUser        As String
-    Local sPassword    As String
-    Local sValue       As String
-    Local sBody        As String
+    Local sMethod       As String
+    Local sUrl          As String
+    Local eAsync        As Ext
+    Local sHeader       As String
+    Local sUser         As String
+    Local sPassword     As String
+    Local sValue        As String
+    Local sBody         As String
     Local eresolveTimeout  As Ext
     Local econnectTimeout  As Ext
     Local esendTimeout     As Ext
-    Local ereceiveTimeout  As Ext
+    Local ereceiveTimeout  As Ext 
+    Local eWait         As Ext 
+    Local vWait         As variant
 
 
     '---We map our instance (whatever it will be) to a pObject pointer
@@ -416,6 +418,25 @@
         '---parse Params
         If thinBasic_CheckOpenParens_Optional Then thinBasic_CheckCloseParens_Mandatory
         @RetValNum = oObject(1&).cServerXMLHTTP_IsNothing
+
+      Case "WAITFORRESPONSE"
+        '---We need to tell thinCore what type of info we are returning assigning to return function value the type
+        '---Than assign to @RetValNum or @RetValStr the return value
+        Function = %thinBasic_ReturnNumber
+        '---parse Params
+        pp = thinBasic_CheckOpenParens_Optional
+        thinBasic_ParseNumber eWait
+        Let vWait = eWait As Long
+        If pp Then thinBasic_CheckCloseParens_Mandatory
+        '---If all went fine ...
+        If thinBasic_ErrorFree Then
+          If lRecursive Then
+            '@RetValNum = Left$(@RetValStr, nChars)
+          Else
+            '@RetValNum =
+            lServerXMLHTTP(1&).WaitForResponse(eWait)
+          End If
+        End If
 
 '      '-------------------------------------------------------
 '      '---Properties
