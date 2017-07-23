@@ -18,7 +18,7 @@ Clone [module_core](https://github.com/ThinBASIC/module_core) in a way it is pla
 
 ### Script example using this module
 
-```
+```thinBasic
   Uses "MSXML2"
   Uses "Console"
 
