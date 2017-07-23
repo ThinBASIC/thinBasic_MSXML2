@@ -16,7 +16,7 @@ PowerBASIC for Windows, v10.04
 ### Dependencies
 Clone [module_core](https://github.com/ThinBASIC/module_core) in a way it is placed in the same root directory as this project.
 
-### Script example using this module
+### Script examples using thinBasic_MSXML2 module
 
 **Connect and download some JSONs**
 ```thinBasic
