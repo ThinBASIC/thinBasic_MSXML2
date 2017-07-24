@@ -17,7 +17,6 @@
     '---so they can be called only from inside other methods.
     '----------------------------------------------------------------------------
     Class Method Create()
-      ' Do initialization
       pHTTPServer     = ANYCOM $PROGID_MSXML2_ServerXMLHTTP600
 
       If not IsObject(pHTTPServer) Then
@@ -26,7 +25,6 @@
     End Method
 
     Class Method Destroy()
-      '---Do cleanup
       pHTTPServer = Nothing
     End Method
 
@@ -34,7 +32,6 @@
     ' We need to define an interface that will contain public methods
     '----------------------------------------------------------------------------
     Interface iMsxml2_ServerXMLHTTP
-
 
       Inherit IUnknown
 
@@ -100,12 +97,6 @@
   '   This pointer is initialized by thinBasic engine to hold object reference
   '--------------------------------------------------------------------------------------
   Sub Msxml2_ServerXMLHTTP_Create( ByVal pObject As Long )
-  ' We want Syntax of constructor to be something like:
-  '   object = New cString[(InitialStringData)]
-  ' Example
-  '   MyCString = New cString("Initial value")
-  '--------------------------------------------------------------------------------------
-    'Local sBuffer As String
     Local pp      As Byte
 
     '---Remember: programmer is responsible of syntax so wrapper method MUST parse syntax
@@ -113,10 +104,6 @@
     '---Optionally checks if there is a (
     pp = thinBasic_CheckOpenParens_Optional
     If pp Then thinBasic_CheckCloseParens_Mandatory
-'      '---If yes, then parse string expression and )
-'      thinBasic_ParseString sBuffer
-'      thinBasic_CheckCloseParens_Mandatory
-'    End If
 
     '---If all went fine ...
     If thinBasic_ErrorFree Then
@@ -126,7 +113,6 @@
       'We are defining a new class interface variable at the pointer location allocated by thinBasic and passed to all methods
       ReDim oObject(1& To 1&) As iMsxml2_ServerXMLHTTP At pObject
 
-      '---We instantiate a new class
       oObject(1&) = Class "cMsxml2_ServerXMLHTTP"
       '---We call internal creator
       oObject(1&).cServerXMLHTTP_Create()
@@ -140,10 +126,6 @@
    Sub Msxml2_ServerXMLHTTP_Destroy( ByVal pObject As Long )
   '--------------------------------------------------------------------------------------
 
-    '---Well, there is nothing we need to do when script class is released
-    '---but just in case you allocated some dynamic memory, you will be responsible to
-    '---release it. And the best place is the destructor
-    '---If all went fine ...
     If thinBasic_ErrorFree Then
       ReDim oObject(1& To 1&) As iMsxml2_ServerXMLHTTP At pObject
       oObject(1&).cServerXMLHTTP_Destroy()
@@ -154,7 +136,6 @@
   '----------------------------------------------------------------------------
   Function Msxml2_ServerXMLHTTP_GetClassObject(ByVal pObject As Long) As Dword
   '----------------------------------------------------------------------------
-    '---If all went fine ...
     If thinBasic_ErrorFree Then
       ReDim oObject(1& To 1&) As iMsxml2_ServerXMLHTTP At pObject
       Function = oObject(1&).cServerXMLHTTP_GetClassObject()
@@ -192,8 +173,8 @@
     Local eresolveTimeout  As Ext
     Local econnectTimeout  As Ext
     Local esendTimeout     As Ext
-    Local ereceiveTimeout  As Ext 
-    Local eWaitSec      As Ext 
+    Local ereceiveTimeout  As Ext
+    Local eWaitSec      As Ext
     Local vWaitSec      As variant
 
 
