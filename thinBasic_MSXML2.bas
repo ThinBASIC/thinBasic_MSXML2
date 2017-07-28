@@ -28,12 +28,12 @@
 
 
   '----------------------------------------------------------------------------
-  Function LoadLocalSymbols Alias "LoadLocalSymbols" (Optional ByVal sPath As String) Export As Long
   ' This function is automatically called by thinCore whenever this DLL is loaded.
   ' This function MUST be present in every external DLL you want to use with thinBasic
   ' Use this function to initialize every variable you need and for loading the
   ' new symbol (read Keyword) you have created.
   '----------------------------------------------------------------------------
+  Function LoadLocalSymbols Alias "LoadLocalSymbols" (Optional ByVal sPath As String) Export As Long
 
     Local RetCode                 As Long
     Local pClass_Msxml2_XMLHTTP   As Long
@@ -79,7 +79,6 @@
       '---Declare a class WITH a class function
       pClass_Msxml2_XMLHTTP = thinBasic_Class_Add("ServerXMLHTTPRequest", CodePtr(Msxml2_ServerXMLHTTP_ClassHandling))
 
-'MsgBox str$(pClass_Msxml2_XMLHTTP)
       '---If class was created, we just need to mandatory define constructor and destructor
       If pClass_Msxml2_XMLHTTP Then
         ' -- Constructor wrapper function needs to be linked in as _Create
@@ -92,7 +91,7 @@
       End If
     '---------------------------------------------------------------------------
 
-    'https://msdn.microsoft.com/en-us/library/ms753800(v=vs.85).aspx
+    '---Reference https://msdn.microsoft.com/en-us/library/ms753800(v=vs.85).aspx
     thinBasic_AddEquate  "%ServerXMLHTTP_UNINITIALIZED"                 , "", 0
     thinBasic_AddEquate  "%ServerXMLHTTP_LOADING"                       , "", 1
     thinBasic_AddEquate  "%ServerXMLHTTP_LOADED"                        , "", 2
@@ -123,14 +122,14 @@
   End Function
 
   '----------------------------------------------------------------------------
-  Function UnLoadLocalSymbols Alias "UnLoadLocalSymbols" () Export As Long
   ' This function is automatically called by thinCore whenever this DLL is unloaded.
   ' This function CAN be present but it is not necessary.
   ' Use this function to perform uninitialize process, if needed.
   '----------------------------------------------------------------------------
-
+  Function UnLoadLocalSymbols Alias "UnLoadLocalSymbols" () Export As Long
 
     Function = 0&
+
   End Function
 
 

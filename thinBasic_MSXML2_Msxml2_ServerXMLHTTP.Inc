@@ -414,7 +414,8 @@
           If lRecursive Then
             '@RetValNum = Left$(@RetValStr, nChars)
           Else
-            @RetValNum = lServerXMLHTTP(1&).WaitForResponse(vWaitSec)
+            @RetValNum = lServerXMLHTTP(1&).WaitForResponse(eWaitSec)
+'MsgBox "WaitForResponse" & Str$(eWaitSec)
           End If
         End If
 

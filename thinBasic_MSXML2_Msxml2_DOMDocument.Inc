@@ -250,7 +250,6 @@
     If pp Then thinBasic_CheckCloseParens_Mandatory
 
     If thinBasic_ErrorFree Then
-
       'Here is the magic !!!!!!!!!!!!
       'Use the magic REDIM ... AT and the trick is done
       'We are defining a new class interface variable at the pointer location allocated by thinBasic and passed to all methods
@@ -264,7 +263,6 @@
   '--------------------------------------------------------------------------------------
    Sub Msxml2_DOMDocument_Destroy( ByVal pObject As Long )
   '--------------------------------------------------------------------------------------
-
     If pObject Then
       ReDim oObject(1& To 1&) As iMsxml2_DOMDocument At pObject
       Set oObject(1&) = Nothing
@@ -275,6 +273,7 @@
   '----------------------------------------------------------------------------
   Function Msxml2_DOMDocument_GetClassObject(ByVal pObject As Long) As Dword
   '----------------------------------------------------------------------------
+
     If thinBasic_ErrorFree Then
       ReDim oObject(1& To 1&) As iMsxml2_DOMDocument At pObject
       Function = oObject(1&).Msxml2_DOMDocument_GetClassObject()
