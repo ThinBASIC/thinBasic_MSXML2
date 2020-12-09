@@ -21,11 +21,16 @@
   #Include Once "WIN32API.INC"
   #Include Once "..\module_core\thinCore.INC"
 
-  #Include Once ".\MSXML2.INC"
-  #Include Once ".\thinBasic_MSXML2_Msxml2_ServerXMLHTTP.Inc"
-  #Include Once ".\thinBasic_MSXML2_Msxml2_DOMDocument.Inc"
+  #Include Once ".\MSXML2.INC"      
+  
+  #Include Once ".\thinBasic_MSXML2_ServerXMLHTTP.Inc"
+  
+  #Include Once ".\thinBasic_MSXML2_DOMDocument.Inc"
+  '#Include Once ".\thinBasic_MSXML2_DOMDocument_Node.Inc"
+  '#Include Once ".\thinBasic_MSXML2_DOMDocument_NodeList.Inc"
 
-
+  '#Include Once "MSSOAP30.inc"
+  
 
   '----------------------------------------------------------------------------
   ' This function is automatically called by thinCore whenever this DLL is loaded.
@@ -35,9 +40,10 @@
   '----------------------------------------------------------------------------
   Function LoadLocalSymbols Alias "LoadLocalSymbols" (Optional ByVal sPath As String) Export As Long
 
-    Local RetCode                 As Long
-    Local pClass_Msxml2_XMLHTTP   As Long
-    Local pClass_Msxml2_XMLDOM    As Long
+    Local RetCode                       As Long
+    Local pClass_Msxml2_XMLHTTP         As Long
+    Local pClass_Msxml2_XMLDOMDocument  As Long
+    Local pClass_Msxml2_XMLDOMNode      As Long
 
     '---------------------------------------------------------------------------
     ' There are two methods to create a thinBasic Module Class
@@ -83,6 +89,7 @@
       If pClass_Msxml2_XMLHTTP Then
         ' -- Constructor wrapper function needs to be linked in as _Create
         RetCode = thinBasic_Class_AddMethod   (pClass_Msxml2_XMLHTTP, "_Create"         , %thinBasic_ReturnNone       , CodePtr(Msxml2_ServerXMLHTTP_Create         ))
+
         ' -- Destructor wrapper function needs to be linked in as _Destroy
         RetCode = thinBasic_Class_AddMethod   (pClass_Msxml2_XMLHTTP, "_Destroy"        , %thinBasic_ReturnNone       , CodePtr(Msxml2_ServerXMLHTTP_Destroy        ))
         ' -- ClassObject
@@ -92,11 +99,24 @@
     '---------------------------------------------------------------------------
 
     '---Reference https://msdn.microsoft.com/en-us/library/ms753800(v=vs.85).aspx
-    thinBasic_AddEquate  "%ServerXMLHTTP_UNINITIALIZED"                 , "", 0
-    thinBasic_AddEquate  "%ServerXMLHTTP_LOADING"                       , "", 1
-    thinBasic_AddEquate  "%ServerXMLHTTP_LOADED"                        , "", 2
-    thinBasic_AddEquate  "%ServerXMLHTTP_INTERACTIVE"                   , "", 3
-    thinBasic_AddEquate  "%ServerXMLHTTP_COMPLETED"                     , "", 4
+    thinBasic_AddEquate  "%ServerXMLHTTP_UNINITIALIZED"                   , "", 0
+    thinBasic_AddEquate  "%ServerXMLHTTP_LOADING"                         , "", 1
+    thinBasic_AddEquate  "%ServerXMLHTTP_LOADED"                          , "", 2
+    thinBasic_AddEquate  "%ServerXMLHTTP_INTERACTIVE"                     , "", 3
+    thinBasic_AddEquate  "%ServerXMLHTTP_COMPLETED"                       , "", 4
+
+    thinBasic_AddEquate  "%SXH_OPTION_URL"                                , "", -1
+    thinBasic_AddEquate  "%SXH_OPTION_URL_CODEPAGE"                       , "", 0
+    thinBasic_AddEquate  "%SXH_OPTION_ESCAPE_PERCENT_IN_URL"              , "", 1
+    thinBasic_AddEquate  "%SXH_OPTION_IGNORE_SERVER_SSL_CERT_ERROR_FLAGS" , "", 2
+    thinBasic_AddEquate  "%SXH_OPTION_SELECT_CLIENT_SSL_CERT"             , "", 3
+
+    thinBasic_AddEquate  "%SXH_SERVER_CERT_IGNORE_UNKNOWN_CA"             , "", 256
+    thinBasic_AddEquate  "%SXH_SERVER_CERT_IGNORE_WRONG_USAGE"            , "", 512  
+    thinBasic_AddEquate  "%SXH_SERVER_CERT_IGNORE_CERT_CN_INVALID"        , "", 4096 
+    thinBasic_AddEquate  "%SXH_SERVER_CERT_IGNORE_CERT_DATE_INVALID"      , "", 8192 
+    thinBasic_AddEquate  "%SXH_SERVER_CERT_IGNORE_ALL_SERVER_ERRORS"      , "", 13056
+
 
 
 
@@ -104,19 +124,45 @@
     ' Configure Class: DOMDocument
     '---------------------------------------------------------------------------
       '---Declare a class WITH a class function
-      pClass_Msxml2_XMLDOM = thinBasic_Class_Add("DOMDocument", CodePtr(Msxml2_DOMDocument_ClassHandling))
+      pClass_Msxml2_XMLDOMDocument = thinBasic_Class_Add("DOMDocument", CodePtr(Msxml2_DOMDocument_ClassHandling))
 
       '---If class was created, we just need to mandatory define constructor and destructor
-      If pClass_Msxml2_XMLDOM Then
+      If pClass_Msxml2_XMLDOMDocument Then
         ' -- Constructor wrapper function needs to be linked in as _Create
-        RetCode = thinBasic_Class_AddMethod   (pClass_Msxml2_XMLDOM, "_Create"          , %thinBasic_ReturnNone       , CodePtr(Msxml2_DOMDocument_Create           ))
+        RetCode = thinBasic_Class_AddMethod   (pClass_Msxml2_XMLDOMDocument, "_Create"          , %thinBasic_ReturnNone       , CodePtr(Msxml2_DOMDocument_Create           ))
+
+        ' -- Constructor wrapper function used for direct creation (without the use of NEW keyword) _CreateDirect
+        RetCode = thinBasic_Class_AddMethod   (pClass_Msxml2_XMLDOMDocument, "_CreateDirect"    , %thinBasic_ReturnNone       , CodePtr(Msxml2_DOMDocument_Create_Direct    ))
+
         ' -- Destructor wrapper function needs to be linked in as _Destroy
-        RetCode = thinBasic_Class_AddMethod   (pClass_Msxml2_XMLDOM, "_Destroy"         , %thinBasic_ReturnNone       , CodePtr(Msxml2_DOMDocument_Destroy          ))
+        RetCode = thinBasic_Class_AddMethod   (pClass_Msxml2_XMLDOMDocument, "_Destroy"         , %thinBasic_ReturnNone       , CodePtr(Msxml2_DOMDocument_Destroy          ))
         ' -- ClassObject
-        RetCode = thinBasic_Class_AddMethod   (pClass_Msxml2_XMLDOM, "_GetClassObject"  , %thinBasic_ReturnCodedWord  , CodePtr(Msxml2_DOMDocument_GetClassObject   ))
+        RetCode = thinBasic_Class_AddMethod   (pClass_Msxml2_XMLDOMDocument, "_GetClassObject"  , %thinBasic_ReturnCodedWord  , CodePtr(Msxml2_DOMDocument_GetClassObject   ))
 
       End If
     '---------------------------------------------------------------------------
+
+'    '---------------------------------------------------------------------------
+'    ' Configure Class: DOMNode
+'    '---------------------------------------------------------------------------
+'      '---Declare a class WITH a class function
+'      pClass_Msxml2_XMLDOMNode = thinBasic_Class_Add("DOMNode", CodePtr(Msxml2_DOMNode_ClassHandling))
+'
+'      '---If class was created, we just need to mandatory define constructor and destructor
+'      If pClass_Msxml2_XMLDOMNode Then
+'        ' -- Constructor wrapper function needs to be linked in as _Create
+'        RetCode = thinBasic_Class_AddMethod   (pClass_Msxml2_XMLDOMNode, "_Create"          , %thinBasic_ReturnNone       , CodePtr(Msxml2_DOMNode_Create           ))
+'
+'        ' -- Constructor wrapper function used for direct creation (without the use of NEW keyword) _CreateDirect
+'        RetCode = thinBasic_Class_AddMethod   (pClass_Msxml2_XMLDOMNode, "_CreateDirect"    , %thinBasic_ReturnNone       , CodePtr(Msxml2_DOMNode_Create_Direct    ))
+'
+'        ' -- Destructor wrapper function needs to be linked in as _Destroy
+'        RetCode = thinBasic_Class_AddMethod   (pClass_Msxml2_XMLDOMNode, "_Destroy"         , %thinBasic_ReturnNone       , CodePtr(Msxml2_DOMNode_Destroy          ))
+'        ' -- ClassObject
+'        RetCode = thinBasic_Class_AddMethod   (pClass_Msxml2_XMLDOMNode, "_GetClassObject"  , %thinBasic_ReturnCodedWord  , CodePtr(Msxml2_DOMNode_GetClassObject   ))
+'
+'      End If
+'    '---------------------------------------------------------------------------
 
     Function = 0&
   End Function

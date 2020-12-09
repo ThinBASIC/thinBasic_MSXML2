@@ -164,10 +164,16 @@
 
     Local sMethod       As String
     Local sUrl          As String
-    Local eAsync        As Ext
+
     Local sHeader       As String
+    
+    Local eAsync        As Ext
     Local sUser         As String
     Local sPassword     As String
+      Local eAsync_Present     As Byte
+      Local sUser_Present     As Byte
+      Local sPassword_Present As Byte
+
     Local sValue        As String
     Local sBody         As String
     Local eresolveTimeout  As Ext
@@ -197,10 +203,13 @@
       '---Methods
       '---------------
       Case "STATUS"
+        pp = thinBasic_CheckOpenParens_Optional
+        If pp Then thinBasic_CheckCloseParens_Mandatory
+
         '---We need to tell thinCore what type of info we are returning assigning to return function value the type
         '---Than assign to @RetValNum or @RetValStr the return value
         Function = %thinBasic_ReturnNumber
-        '---If all went fine ...
+        '---If all went fine ...  
         If thinBasic_ErrorFree Then
           If lRecursive Then
             '@RetValStr = Mid$(@RetValStr, eStart, eLen)
@@ -210,6 +219,8 @@
         End If
 
       Case "STATUSTEXT"
+        pp = thinBasic_CheckOpenParens_Optional
+        If pp Then thinBasic_CheckCloseParens_Mandatory
         '---We need to tell thinCore what type of info we are returning assigning to return function value the type
         '---Than assign to @RetValNum or @RetValStr the return value
         Function = %thinBasic_ReturnString
@@ -225,6 +236,8 @@
       Case "READYSTATE"
         '---We need to tell thinCore what type of info we are returning assigning to return function value the type
         '---Than assign to @RetValNum or @RetValStr the return value
+        pp = thinBasic_CheckOpenParens_Optional
+        If pp Then thinBasic_CheckCloseParens_Mandatory
         Function = %thinBasic_ReturnNumber
         '---If all went fine ...
         If thinBasic_ErrorFree Then
@@ -247,10 +260,13 @@
 
           eAsync = %FALSE
           If thinBasic_CheckComma_optional Then
+            eAsync_Present = %TRUE
             thinBasic_ParseNumber eAsync
             If thinBasic_CheckComma_Optional Then
+              sUser_Present = %TRUE
               thinBasic_ParseString sUser
-              If thinBasic_CheckComma_Mandatory Then
+              If thinBasic_CheckComma_Optional Then
+                sPassword_Present = %TRUE
                 thinBasic_ParseString sPassword
               End If
             End If
@@ -264,7 +280,16 @@
           If lRecursive Then
             '@RetValNum = Left$(@RetValStr, nChars)
           Else
-            lServerXMLHTTP(1&).Open(sMethod, sUrl, eAsync, sUser, sPassword)
+            If sPassword_Present = %TRUE Then
+              lServerXMLHTTP(1&).Open(sMethod, sUrl, eAsync, sUser, sPassword)
+            ElseIf sUser_Present = %TRUE Then           
+              lServerXMLHTTP(1&).Open(sMethod, sUrl, eAsync, sUser)
+            ElseIf eAsync_Present = %TRUE Then
+              lServerXMLHTTP(1&).Open(sMethod, sUrl, eAsync)
+            Else
+              lServerXMLHTTP(1&).Open(sMethod, sUrl)
+            End If
+                          
             '    Method open <1> (Byval bstrMethod As WString, Byval bstrUrl As WString, Opt Byval varAsync As Variant, Opt Byval _
             '        bstrUser As Variant, Opt ByVal bstrPassword As Variant)
           End If
@@ -356,6 +381,8 @@
       Case "GETALLRESPONSEHEADERS" ' UCase$("getAllResponseHeaders")
         '---We need to tell thinCore what type of info we are returning assigning to return function value the type
         '---Than assign to @RetValNum or @RetValStr the return value
+        pp = thinBasic_CheckOpenParens_Optional
+        If pp Then thinBasic_CheckCloseParens_Mandatory
         Function = %thinBasic_ReturnString
         '---If all went fine ...
         If thinBasic_ErrorFree Then
@@ -387,6 +414,8 @@
       Case "ISOBJECT"
         '---We need to tell thinCore what type of info we are returning assigning to return function value the type
         '---Than assign to @RetValNum or @RetValStr the return value
+        pp = thinBasic_CheckOpenParens_Optional
+        If pp Then thinBasic_CheckCloseParens_Mandatory
         Function = %thinBasic_ReturnNumber
         '---parse Params
         If thinBasic_CheckOpenParens_Optional Then thinBasic_CheckCloseParens_Mandatory
@@ -395,6 +424,8 @@
       Case "ISNOTHING"
         '---We need to tell thinCore what type of info we are returning assigning to return function value the type
         '---Than assign to @RetValNum or @RetValStr the return value
+        pp = thinBasic_CheckOpenParens_Optional
+        If pp Then thinBasic_CheckCloseParens_Mandatory
         Function = %thinBasic_ReturnNumber
         '---parse Params
         If thinBasic_CheckOpenParens_Optional Then thinBasic_CheckCloseParens_Mandatory
@@ -418,6 +449,109 @@
 'MsgBox "WaitForResponse" & Str$(eWaitSec)
           End If
         End If
+
+      Case "GETOPTION"
+        Local lGetOption As Long
+
+        '---parse Params
+        pp = thinBasic_CheckOpenParens_Optional
+        thinBasic_ParseLong lGetOption
+        If pp Then thinBasic_CheckCloseParens_Mandatory
+        '---If all went fine ...
+        If thinBasic_ErrorFree Then
+          If lRecursive Then
+            '@RetValStr = Mid$(@RetValStr, eStart, eLen)
+          Else                     
+            Select Case lGetOption
+              Case %Enum__SERVERXMLHTTP_OPTION.SXH_OPTION_URL
+                Function = %thinBasic_ReturnString
+                @RetValStr = Variant$(lServerXMLHTTP(1&).getOption(lGetOption))
+                
+              Case %Enum__SERVERXMLHTTP_OPTION.SXH_OPTION_URL_CODEPAGE
+                Function = %thinBasic_ReturnNumber
+                @RetValNum = Variant#(lServerXMLHTTP(1&).getOption(lGetOption))
+
+              Case %Enum__SERVERXMLHTTP_OPTION.SXH_OPTION_ESCAPE_PERCENT_IN_URL
+                Function = %thinBasic_ReturnNumber
+                @RetValNum = Variant#(lServerXMLHTTP(1&).getOption(lGetOption))
+
+              Case %Enum__SERVERXMLHTTP_OPTION.SXH_OPTION_IGNORE_SERVER_SSL_CERT_ERROR_FLAGS
+                Function = %thinBasic_ReturnNumber
+                @RetValNum = Variant#(lServerXMLHTTP(1&).getOption(lGetOption))
+
+              Case %Enum__SERVERXMLHTTP_OPTION.SXH_OPTION_SELECT_CLIENT_SSL_CERT
+                Function = %thinBasic_ReturnString
+                @RetValStr = Variant$(lServerXMLHTTP(1&).getOption(lGetOption))
+
+            End Select
+          End If
+        End If
+
+      Case "SETOPTION"
+        Local lSetOption        As Long
+        Local sSetOptionValue   As String
+        Local lSetOptionValue   As Long
+        Local vSetOptionVariant As variant
+
+        '---parse Params
+        pp = thinBasic_CheckOpenParens_Optional
+        thinBasic_ParseLong lSetOption
+        thinBasic_CheckComma_Mandatory
+
+          '---If all went fine ...
+          If thinBasic_ErrorFree Then
+            If lRecursive Then
+              '@RetValStr = Mid$(@RetValStr, eStart, eLen)
+            Else                     
+              Select Case lSetOption
+                'Case %Enum__SERVERXMLHTTP_OPTION.SXH_OPTION_URL
+                '  Function = %thinBasic_ReturnString
+                '  @RetValStr = Variant$(lServerXMLHTTP(1&).getOption(lGetOption))
+                  
+                Case %Enum__SERVERXMLHTTP_OPTION.SXH_OPTION_URL_CODEPAGE
+                  Function = %thinBasic_ReturnNumber
+                  thinBasic_ParseLong lSetOptionValue
+                  vSetOptionVariant = Variant#(lSetOptionValue)
+                  lServerXMLHTTP(1&).SetOption(lSetOption, vSetOptionVariant)
+
+                Case %Enum__SERVERXMLHTTP_OPTION.SXH_OPTION_ESCAPE_PERCENT_IN_URL
+                  Function = %thinBasic_ReturnNumber
+                  thinBasic_ParseLong lSetOptionValue
+                  vSetOptionVariant = Variant#(lSetOptionValue)
+                  lServerXMLHTTP(1&).SetOption(lSetOption, vSetOptionVariant)
+  
+                Case %Enum__SERVERXMLHTTP_OPTION.SXH_OPTION_IGNORE_SERVER_SSL_CERT_ERROR_FLAGS
+                  Function = %thinBasic_ReturnNumber
+                  thinBasic_ParseLong lSetOptionValue
+                  vSetOptionVariant = Variant#(lSetOptionValue)
+                  lServerXMLHTTP(1&).SetOption(lSetOption, vSetOptionVariant)
+
+                Case %Enum__SERVERXMLHTTP_OPTION.SXH_OPTION_SELECT_CLIENT_SSL_CERT
+                  Function = %thinBasic_ReturnNumber
+                  thinBasic_ParseString sSetOptionValue
+                  vSetOptionVariant = Variant$(sSetOptionValue)
+                  lServerXMLHTTP(1&).SetOption(lSetOption, vSetOptionVariant)
+  
+              End Select
+            End If
+          End If
+        If pp Then thinBasic_CheckCloseParens_Mandatory
+
+
+'%SXH_OPTION_ESCAPE_PERCENT_IN_URL
+'%SXH_OPTION_IGNORE_SERVER_SSL_CERT_ERROR_FLAGS
+'%SXH_OPTION_SELECT_CLIENT_SSL_CERT
+'%SXH_OPTION_URL
+'%SXH_OPTION_URL_CODEPAGE
+
+'%SXH_SERVER_CERT_IGNORE_ALL_SERVER_ERRORS
+'%SXH_SERVER_CERT_IGNORE_CERT_CN_INVALID
+'%SXH_SERVER_CERT_IGNORE_CERT_DATE_INVALID
+'%SXH_SERVER_CERT_IGNORE_UNKNOWN_CA
+'%SXH_SERVER_CERT_IGNORE_WRONG_USAGE
+
+
+
 
 '      '-------------------------------------------------------
 '      '---Properties

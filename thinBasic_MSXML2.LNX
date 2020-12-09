@@ -22,7 +22,9 @@ RunFolder=.\
 
 [Files]
 .\thinBasic_MSXML2.basª1
-.\thinBasic_MSXML2.rcª1
-.\thinBasic_MSXML2_Msxml2_DOMDocument.Incª1
-.\thinBasic_MSXML2_Msxml2_ServerXMLHTTP.Incª1
 .\MSXML2.INCª1
+.\thinBasic_MSXML2.rcª1
+.\thinBasic_MSXML2_ServerXMLHTTP.Incª1
+.\thinBasic_MSXML2_DOMDocument.Incª1
+.\thinBasic_MSXML2_DOMDocument_Node.Incª1
+.\thinBasic_MSXML2_DOMDocument_NodeList.Incª1
