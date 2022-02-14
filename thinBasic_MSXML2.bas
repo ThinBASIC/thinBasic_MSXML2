@@ -42,6 +42,7 @@
 
     Local RetCode                       As Long
     Local pClass_Msxml2_XMLHTTP         As Long
+    Local pClass_Msxml2_XMLHTTPREQUEST  As Long
     Local pClass_Msxml2_XMLDOMDocument  As Long
     Local pClass_Msxml2_XMLDOMNode      As Long
 
@@ -80,10 +81,29 @@
 
 
     '---------------------------------------------------------------------------
+    ' Configure Class: ServerXMLHTTPRequest
+    '---------------------------------------------------------------------------
+      '---Declare a class WITH a class function
+      pClass_Msxml2_XMLHTTPREQUEST = thinBasic_Class_Add("ServerXMLHTTPRequest", CodePtr(Msxml2_ServerXMLHTTP_ClassHandling))
+
+      '---If class was created, we just need to mandatory define constructor and destructor
+      If pClass_Msxml2_XMLHTTPREQUEST Then
+        ' -- Constructor wrapper function needs to be linked in as _Create
+        RetCode = thinBasic_Class_AddMethod   (pClass_Msxml2_XMLHTTPREQUEST, "_Create"         , %thinBasic_ReturnNone       , CodePtr(Msxml2_ServerXMLHTTP_Create         ))
+
+        ' -- Destructor wrapper function needs to be linked in as _Destroy
+        RetCode = thinBasic_Class_AddMethod   (pClass_Msxml2_XMLHTTPREQUEST, "_Destroy"        , %thinBasic_ReturnNone       , CodePtr(Msxml2_ServerXMLHTTP_Destroy        ))
+        ' -- ClassObject
+        RetCode = thinBasic_Class_AddMethod   (pClass_Msxml2_XMLHTTPREQUEST, "_GetClassObject" , %thinBasic_ReturnCodedWord  , CodePtr(Msxml2_ServerXMLHTTP_GetClassObject ))
+
+      End If
+    '---------------------------------------------------------------------------
+
+    '---------------------------------------------------------------------------
     ' Configure Class: ServerXMLHTTP
     '---------------------------------------------------------------------------
       '---Declare a class WITH a class function
-      pClass_Msxml2_XMLHTTP = thinBasic_Class_Add("ServerXMLHTTPRequest", CodePtr(Msxml2_ServerXMLHTTP_ClassHandling))
+      pClass_Msxml2_XMLHTTP = thinBasic_Class_Add("ServerXMLHTTP", CodePtr(Msxml2_ServerXMLHTTP_ClassHandling))
 
       '---If class was created, we just need to mandatory define constructor and destructor
       If pClass_Msxml2_XMLHTTP Then
